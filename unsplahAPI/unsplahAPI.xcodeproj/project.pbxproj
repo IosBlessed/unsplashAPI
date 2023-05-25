@@ -91,7 +91,12 @@
 		3787704B2A1F789600EC54CF /* UnsplashStorageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770472A1F789600EC54CF /* UnsplashStorageServiceProtocol.swift */; };
 		3787704C2A1F789600EC54CF /* AuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770482A1F789600EC54CF /* AuthenticationServiceProtocol.swift */; };
 		378770572A1F8FF000EC54CF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770552A1F8FF000EC54CF /* AuthenticationViewController.swift */; };
-		378770582A1F8FF000EC54CF /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378770562A1F8FF000EC54CF /* AuthenticationViewController.xib */; };
+		378770632A1FB4C100EC54CF /* homeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 378770622A1FB4C100EC54CF /* homeScreen.png */; };
+		378770652A1FB6E400EC54CF /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378770642A1FB6E400EC54CF /* AuthenticationViewController.xib */; };
+		378770672A1FC20D00EC54CF /* DesignedSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770662A1FC20D00EC54CF /* DesignedSystem.swift */; };
+		378770692A1FC33E00EC54CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770682A1FC33E00EC54CF /* Constants.swift */; };
+		3787706D2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3787706B2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf */; };
+		3787706E2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3787706C2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,7 +186,12 @@
 		378770472A1F789600EC54CF /* UnsplashStorageServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashStorageServiceProtocol.swift; sourceTree = "<group>"; };
 		378770482A1F789600EC54CF /* AuthenticationServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceProtocol.swift; sourceTree = "<group>"; };
 		378770552A1F8FF000EC54CF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
-		378770562A1F8FF000EC54CF /* AuthenticationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationViewController.xib; sourceTree = "<group>"; };
+		378770622A1FB4C100EC54CF /* homeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeScreen.png; sourceTree = "<group>"; };
+		378770642A1FB6E400EC54CF /* AuthenticationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationViewController.xib; sourceTree = "<group>"; };
+		378770662A1FC20D00EC54CF /* DesignedSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignedSystem.swift; sourceTree = "<group>"; };
+		378770682A1FC33E00EC54CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3787706B2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		3787706C2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,9 +279,13 @@
 		37876F292A1F5B0900EC54CF /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				3787706A2A1FDE6900EC54CF /* Fonts */,
+				378770612A1FB4C100EC54CF /* images */,
 				37876F1B2A1F589400EC54CF /* LaunchScreen.storyboard */,
 				37876F192A1F589400EC54CF /* Assets.xcassets */,
 				37876F1E2A1F589400EC54CF /* Info.plist */,
+				378770662A1FC20D00EC54CF /* DesignedSystem.swift */,
+				378770682A1FC33E00EC54CF /* Constants.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -288,7 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				378770552A1F8FF000EC54CF /* AuthenticationViewController.swift */,
-				378770562A1F8FF000EC54CF /* AuthenticationViewController.xib */,
+				378770642A1FB6E400EC54CF /* AuthenticationViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -856,6 +870,23 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		378770612A1FB4C100EC54CF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				378770622A1FB4C100EC54CF /* homeScreen.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		3787706A2A1FDE6900EC54CF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3787706B2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf */,
+				3787706C2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -866,6 +897,7 @@
 				37876F062A1F589300EC54CF /* Sources */,
 				37876F072A1F589300EC54CF /* Frameworks */,
 				37876F082A1F589300EC54CF /* Resources */,
+				3787706F2A1FE39500EC54CF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -914,9 +946,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				378770582A1F8FF000EC54CF /* AuthenticationViewController.xib in Resources */,
+				378770652A1FB6E400EC54CF /* AuthenticationViewController.xib in Resources */,
+				3787706D2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf in Resources */,
+				3787706E2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf in Resources */,
 				37876FC22A1F746200EC54CF /* SettingsViewController.xib in Resources */,
 				37876FDC2A1F752800EC54CF /* RootTabBarViewController.xib in Resources */,
+				378770632A1FB4C100EC54CF /* homeScreen.png in Resources */,
 				378770382A1F775E00EC54CF /* ChangePasswordViewController.xib in Resources */,
 				37876F1D2A1F589400EC54CF /* LaunchScreen.storyboard in Resources */,
 				37876FF32A1F75AF00EC54CF /* PictureDetailsViewController.xib in Resources */,
@@ -927,6 +962,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3787706F2A1FE39500EC54CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		37876F062A1F589300EC54CF /* Sources */ = {
@@ -944,6 +1000,7 @@
 				3787703A2A1F77A900EC54CF /* AuthentificationCoordinatorProtocol.swift in Sources */,
 				37876F3F2A1F5CCB00EC54CF /* AuthenticationBuilder.swift in Sources */,
 				3787701A2A1F76A200EC54CF /* BrowseViewControllerProtocol.swift in Sources */,
+				378770672A1FC20D00EC54CF /* DesignedSystem.swift in Sources */,
 				37876F2B2A1F5B5100EC54CF /* AuthentificationCoordinator.swift in Sources */,
 				37876F9D2A1F72A100EC54CF /* CreateAccountViewControllerProtocol.swift in Sources */,
 				37876F842A1F71C600EC54CF /* LoginModel.swift in Sources */,
@@ -987,6 +1044,7 @@
 				37876FC12A1F746200EC54CF /* SettingsViewController.swift in Sources */,
 				378770012A1F760800EC54CF /* LikedModel.swift in Sources */,
 				37876F3D2A1F5CB300EC54CF /* AuthenticationModel.swift in Sources */,
+				378770692A1FC33E00EC54CF /* Constants.swift in Sources */,
 				37876F8E2A1F722800EC54CF /* LoginViewControllerProtocol.swift in Sources */,
 				3787704A2A1F789600EC54CF /* UnsplashAPIServiceProtocol.swift in Sources */,
 				37876FEF2A1F758400EC54CF /* PictureDetailsBuilder.swift in Sources */,

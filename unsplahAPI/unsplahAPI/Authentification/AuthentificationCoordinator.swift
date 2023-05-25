@@ -8,20 +8,23 @@
 import UIKit
 
 final class AuthentificationCoordinator: AuthentificationCoordinatorProtocol {
-    
+
     unowned var navigationController: UINavigationController
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     func initializeAuthorizationProcess() {
         let authentication = AuthenticationBuilder.build()
         authentication.coordinator = self
-        self.navigationController.pushViewController(authentication as! AuthenticationViewController, animated: false)
+        self.navigationController.pushViewController(
+            (authentication as? AuthenticationViewController) ?? UIViewController(),
+            animated: false
+        )
     }
-    
+
     func didFinishAuthentification() {
-        //TODO: realize logic of instantiating of browse module
+        // TODO: realize logic of instantiating of browse module
     }
 }

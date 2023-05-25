@@ -18,22 +18,33 @@ enum AuthenticationFlow: String {
     case signUp
 }
 
-enum AuthenticationErrors: Error {
-    case unableToIdentifyUser
+enum AuthenticationErrors: String, Error {
+    case unableToIdentifyUser = "User is not authenticated!"
+    func localizedDescription() -> String {
+        return self.rawValue
+    }
 }
 
 class User: ObservableObject {
-    @Published var username: String = ""
-    @Published var password: String = ""
-    @Published var email: String = ""
+    @Published var username: String? = ""
+    @Published var password: String? = ""
+    @Published var email: String? = ""
     @Published var authenticationState: AuthenticationState = .unauthenticated
     @Published var authenticationFlow: AuthenticationFlow = .login
+
+    func logOut() {
+        username = nil
+        password = nil
+        email = nil
+        authenticationState = .unauthenticated
+    }
 }
 
 class AuthenticationViewModel: AuthenticationViewModelProtocol {
     var user: User = User()
+
     func authenticate(username: String, password: String) {
-        //TODO: request for user's authentication
-        // if user not exists, authentication state => unauthenticated
+        // TODO: request for user's authentication
+        // if user not exists, authentication state => unauthenticate
     }
 }
