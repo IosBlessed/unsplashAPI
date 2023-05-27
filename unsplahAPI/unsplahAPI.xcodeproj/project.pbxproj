@@ -23,7 +23,6 @@
 		37876F7D2A1F716E00EC54CF /* LoginBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F7C2A1F716E00EC54CF /* LoginBuilder.swift */; };
 		37876F822A1F71BA00EC54CF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F812A1F71BA00EC54CF /* LoginViewModel.swift */; };
 		37876F842A1F71C600EC54CF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F832A1F71C600EC54CF /* LoginModel.swift */; };
-		37876F892A1F71F900EC54CF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F872A1F71F900EC54CF /* LoginViewController.swift */; };
 		37876F8C2A1F721B00EC54CF /* LoginViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F8B2A1F721B00EC54CF /* LoginViewModelProtocol.swift */; };
 		37876F8E2A1F722800EC54CF /* LoginViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F8D2A1F722800EC54CF /* LoginViewControllerProtocol.swift */; };
 		37876F902A1F724500EC54CF /* CreateAccountBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F8F2A1F724500EC54CF /* CreateAccountBuilder.swift */; };
@@ -97,6 +96,10 @@
 		378770692A1FC33E00EC54CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770682A1FC33E00EC54CF /* Constants.swift */; };
 		3787706D2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3787706B2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf */; };
 		3787706E2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3787706C2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf */; };
+		378770742A200D0D00EC54CF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770722A200D0D00EC54CF /* LoginViewController.swift */; };
+		378770752A200D0D00EC54CF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378770732A200D0D00EC54CF /* LoginViewController.xib */; };
+		3787707D2A20954200EC54CF /* LoginTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787707C2A20954200EC54CF /* LoginTextFields.swift */; };
+		378770862A21169800EC54CF /* LoginTextFields.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378770852A21169800EC54CF /* LoginTextFields.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,7 +121,6 @@
 		37876F7C2A1F716E00EC54CF /* LoginBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBuilder.swift; sourceTree = "<group>"; };
 		37876F812A1F71BA00EC54CF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		37876F832A1F71C600EC54CF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		37876F872A1F71F900EC54CF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37876F8B2A1F721B00EC54CF /* LoginViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelProtocol.swift; sourceTree = "<group>"; };
 		37876F8D2A1F722800EC54CF /* LoginViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerProtocol.swift; sourceTree = "<group>"; };
 		37876F8F2A1F724500EC54CF /* CreateAccountBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountBuilder.swift; sourceTree = "<group>"; };
@@ -192,6 +194,10 @@
 		378770682A1FC33E00EC54CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3787706B2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		3787706C2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		378770722A200D0D00EC54CF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		378770732A200D0D00EC54CF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		3787707C2A20954200EC54CF /* LoginTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFields.swift; sourceTree = "<group>"; };
+		378770852A21169800EC54CF /* LoginTextFields.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTextFields.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +246,7 @@
 			children = (
 				37876F2A2A1F5B5100EC54CF /* AuthentificationCoordinator.swift */,
 				378770392A1F77A900EC54CF /* AuthentificationCoordinatorProtocol.swift */,
+				378770802A209C0A00EC54CF /* ReusableViews */,
 				37876F402A1F6D6900EC54CF /* Authentication */,
 				37876F412A1F6DBC00EC54CF /* Login */,
 				37876F462A1F6E0C00EC54CF /* CreateAccount */,
@@ -350,7 +357,8 @@
 		37876F422A1F6DC300EC54CF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				37876F872A1F71F900EC54CF /* LoginViewController.swift */,
+				378770722A200D0D00EC54CF /* LoginViewController.swift */,
+				378770732A200D0D00EC54CF /* LoginViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -887,6 +895,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		378770802A209C0A00EC54CF /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				3787707C2A20954200EC54CF /* LoginTextFields.swift */,
+				378770852A21169800EC54CF /* LoginTextFields.xib */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -955,6 +972,8 @@
 				378770382A1F775E00EC54CF /* ChangePasswordViewController.xib in Resources */,
 				37876F1D2A1F589400EC54CF /* LaunchScreen.storyboard in Resources */,
 				37876FF32A1F75AF00EC54CF /* PictureDetailsViewController.xib in Resources */,
+				378770862A21169800EC54CF /* LoginTextFields.xib in Resources */,
+				378770752A200D0D00EC54CF /* LoginViewController.xib in Resources */,
 				37876F1A2A1F589400EC54CF /* Assets.xcassets in Resources */,
 				378770212A1F76D500EC54CF /* BrowseViewController.xib in Resources */,
 				3787700A2A1F764000EC54CF /* LikedViewController.xib in Resources */,
@@ -1013,6 +1032,8 @@
 				37876F8C2A1F721B00EC54CF /* LoginViewModelProtocol.swift in Sources */,
 				378770332A1F773000EC54CF /* ChangePasswordViewModelProtocol.swift in Sources */,
 				378770192A1F76A200EC54CF /* BrowseViewModelProtocol.swift in Sources */,
+				378770742A200D0D00EC54CF /* LoginViewController.swift in Sources */,
+				3787707D2A20954200EC54CF /* LoginTextFields.swift in Sources */,
 				37876F922A1F725200EC54CF /* CreateAccountModel.swift in Sources */,
 				37876FBD2A1F740200EC54CF /* SettingsModel.swift in Sources */,
 				37876F312A1F5BC900EC54CF /* AuthenticationViewModel.swift in Sources */,
@@ -1048,7 +1069,6 @@
 				37876F8E2A1F722800EC54CF /* LoginViewControllerProtocol.swift in Sources */,
 				3787704A2A1F789600EC54CF /* UnsplashAPIServiceProtocol.swift in Sources */,
 				37876FEF2A1F758400EC54CF /* PictureDetailsBuilder.swift in Sources */,
-				37876F892A1F71F900EC54CF /* LoginViewController.swift in Sources */,
 				37876FBE2A1F740200EC54CF /* SettingsViewModel.swift in Sources */,
 				378770182A1F76A200EC54CF /* BrowseBuilder.swift in Sources */,
 				37876F942A1F726000EC54CF /* CreateAccountViewModel.swift in Sources */,

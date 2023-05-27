@@ -23,7 +23,12 @@ final class AuthentificationCoordinator: AuthentificationCoordinatorProtocol {
             animated: false
         )
     }
-
+    func initializeLoginProcess() {
+        let loginScreen = LoginBuilder.build() as? LoginViewController
+        loginScreen?.coordinator = self 
+        loginScreen!.modalPresentationStyle = .fullScreen
+        self.navigationController.pushViewController(loginScreen!, animated: false)
+    }
     func didFinishAuthentification() {
         // TODO: realize logic of instantiating of browse module
     }

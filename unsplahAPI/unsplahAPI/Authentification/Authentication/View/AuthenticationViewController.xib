@@ -42,6 +42,9 @@
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Create Account"/>
+                                    <connections>
+                                        <action selector="createAccountAction:" destination="-1" eventType="touchUpInside" id="1YZ-Do-Jd6"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="crd-My-zlG">
                                     <rect key="frame" x="0.0" y="64" width="0.0" height="48"/>
@@ -50,6 +53,9 @@
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Log in"/>
+                                    <connections>
+                                        <action selector="logInAction:" destination="-1" eventType="touchUpInside" id="PR5-CD-F8Z"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -12,4 +12,5 @@ struct Constants {
                                           UIFont.systemFont(ofSize: 16, weight: .bold)
     static let sanFranciscoRegular: UIFont = UIFont(name: "SFProDisplay-Regular", size: 16) ??
                                              UIFont.systemFont(ofSize: 16, weight: .regular)
+    static var authentificationMarginBackgroundImageTop: Double = 0.0
 }

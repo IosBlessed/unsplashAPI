@@ -7,5 +7,6 @@
 
 protocol AuthentificationCoordinatorProtocol: AnyObject {
     func initializeAuthorizationProcess()
+    func initializeLoginProcess()
     func didFinishAuthentification()
 }

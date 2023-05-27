@@ -8,6 +8,60 @@
 import UIKit
 import Combine
 
+extension UIButton {
+    func customiseMainActorButton(
+        title buttonTitle: String,
+        shadow setShadow: Bool,
+        cornerRadius: CGFloat = 10.0,
+        backgroundColor: UIColor = DesignedSystemColors.primaryContrast,
+        animated: Bool = false
+    ){
+        let button = self
+        button.layer.cornerRadius = cornerRadius
+        button.backgroundColor = DesignedSystemColors.primaryContrast
+        if setShadow {
+            button.layer.shadowColor = UIColor.black.cgColor
+            button.layer.shadowOpacity = 1.0
+            button.layer.shadowOffset = .zero
+            button.layer.shadowRadius = 4.0
+        }
+        button.setAttributedTitle(
+            NSAttributedString(
+                string: buttonTitle,
+                attributes: [
+                    NSAttributedString.Key.font: DesignedSystemFonts.button,
+                    NSAttributedString.Key.foregroundColor: DesignedSystemColors.primaryText
+                ]),
+            for: .normal
+        )
+        if animated {
+            button.layer.opacity = 0.0
+        }
+    }
+    
+    func customiseFootnoteButton(
+        title titleText: String,
+        fontColor foregroundColor: UIColor,
+        font: UIFont,
+        animated: Bool = false
+    ) {
+        let button = self
+        button.setAttributedTitle(
+            NSAttributedString(
+                string: titleText,
+                attributes: [
+                    NSAttributedString.Key.font: font,
+                    NSAttributedString.Key.foregroundColor: foregroundColor
+                ]
+            ),
+            for: .normal
+        )
+        if animated {
+            button.layer.opacity = 0.0
+        }
+    }
+}
+
 class AuthenticationViewController: UIViewController, AuthenticationViewControllerProtocol {
 
     var coordinator: AuthentificationCoordinatorProtocol?
@@ -30,37 +84,20 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
     @IBOutlet private weak var backgroundImageTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var backgroundImageBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var underImageView: UIView!
-    @IBOutlet private weak var buttonsStackView: UIStackView! {
-        didSet {
-            for button in buttonsStackView.arrangedSubviews as? [UIButton] ?? [] {
-                button.layer.masksToBounds = true
-                button.layer.cornerRadius = button.bounds.height / 4
-            }
-        }
-    }
+    @IBOutlet private weak var buttonsStackView: UIStackView!
     @IBOutlet private weak var createAccountButton: UIButton! {
         didSet {
-            createAccountButton.setAttributedTitle(
-                NSAttributedString(
-                    string: "Create Account",
-                    attributes: [
-                        NSAttributedString.Key.font: DesignedSystemFonts.bodyBold,
-                        NSAttributedString.Key.foregroundColor: DesignedSystemColors.primaryText
-                    ]),
-                for: .normal
+            createAccountButton.customiseMainActorButton(
+                title: "Create Account",
+                shadow: true
             )
         }
     }
     @IBOutlet private weak var logInButton: UIButton! {
         didSet {
-            logInButton.setAttributedTitle(
-                NSAttributedString(
-                    string: "Log In",
-                    attributes: [
-                        NSAttributedString.Key.font: DesignedSystemFonts.bodyBold,
-                        NSAttributedString.Key.foregroundColor: DesignedSystemColors.primaryText
-                    ]),
-                for: .normal
+            logInButton.customiseMainActorButton(
+                title: "Log In",
+                shadow: true
             )
         }
     }
@@ -70,7 +107,7 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
             underButtonsLabel.attributedText = NSAttributedString(
                 string: "By proceeding you agree to some random terms of service and privacy policy",
                 attributes: [
-                    NSAttributedString.Key.font: DesignedSystemFonts.smallText,
+                    NSAttributedString.Key.font: DesignedSystemFonts.privacyPolicyText,
                     NSAttributedString.Key.foregroundColor: DesignedSystemColors.primaryInsignificantText
             ]
             )
@@ -100,7 +137,7 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let transitionOfScrollViewUp: Double = 2.0
+        let transitionOfScrollViewUp: Double = 1.0
         UIView.animate(withDuration: transitionOfScrollViewUp) { [weak self] in
             guard let self else { return }
             self.backgroundImageTopConstraint.constant = -280
@@ -112,8 +149,13 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
             self.unitOpacity = 1.0
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        userCancelable = nil
+    }
 
-    func authenticationProcess(result: Result <User?, AuthenticationErrors>) {
+    private func authenticationProcess(result: Result <User?, AuthenticationErrors>) {
         switch result {
         case .success(let _):
             coordinator?.didFinishAuthentification()
@@ -163,9 +205,26 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
             equalToConstant: 30
         ).isActive = true
     }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        userCancelable = nil
+    
+    @IBAction func createAccountAction(_ sender: Any) {
+    
+    }
+    
+    @IBAction func logInAction(_ sender: Any) {
+        UIView.animate(
+            withDuration: 1.0,
+            animations: ( { [weak self] in
+                guard let self else { return }
+                let marginFromTop = homeScreenView.bounds.height / 1.7
+                Constants.authentificationMarginBackgroundImageTop = view.bounds.height - marginFromTop
+                self.backgroundImageTopConstraint.constant = -view.bounds.height
+                self.backgroundImageBottomConstraint.constant = view.bounds.height
+                self.unitOpacity = 0.0
+                homeScreenView.layoutIfNeeded()
+            }),
+            completion: ({ [weak self] animationCompleted in
+                guard let self else { return }
+                self.coordinator?.initializeLoginProcess()
+        }))
     }
 }
