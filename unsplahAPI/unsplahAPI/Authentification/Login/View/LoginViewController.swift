@@ -77,34 +77,12 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
         loginTextView.translatesAutoresizingMaskIntoConstraints = false
         loginTextView.loginTextField.placeholder = "Login"
         loginTextView.passwordTextField.placeholder = "Password"
+        loginTextView.repeatPasswordTextField.isHidden = true
         loginTextView.layer.opacity = 0.0
         return loginTextView
     }()
-    @objc func processField() {
-        guard let email = loginTextFieldsView.loginTextField,
-              let password = loginTextFieldsView.passwordTextField
-        else { return }
-        var emailIsCorrect: Bool = false
-        var passwordIsCorrect: Bool = false
-        viewModel?.processTextFields(email: email.text, password: password.text) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .loginIsCorrect:
-                self.setupTextFieldBasedOnInput(textField: email, isWrong: false)
-                emailIsCorrect = email.text != ""
-            case .passwordIsCorrect:
-                self.setupTextFieldBasedOnInput(textField: password, isWrong: false)
-                passwordIsCorrect = password.text != ""
-            case .loginIncorrectFormat:
-                self.setupTextFieldBasedOnInput(textField: email, isWrong: true)
-                emailIsCorrect = false
-            default:
-                self.setupTextFieldBasedOnInput(textField: password, isWrong: true)
-                passwordIsCorrect = false
-            }
-            self.loginButtonShouldBeActive(isEmail: emailIsCorrect, isPassword: passwordIsCorrect)
-        }
-    }
+    private var keyboardCenter: KeyboardNotificationCenter?
+    
     private func loginButtonShouldBeActive(isEmail isCorrectEmail: Bool, isPassword isCorrectPassword: Bool) {
         if isCorrectEmail && isCorrectPassword {
             logInButton.isEnabled = true
@@ -128,13 +106,17 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
-        registerTapGestureRecognizer()
+        self.keyboardCenter = KeyboardNotificationCenter(for: self, targetView: self.view)
+        self.keyboardCenter?.initializeHideKeyboardGestureRecognizer(selector: #selector(hideKeyboard))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        registerKeyboardAppearanceNotification()
+        setupNavigationBar()
+        keyboardCenter?.registerKeyboardObserver(
+            onAppearance: #selector(keyboardWillShow),
+            onHide: #selector(keyboardWillHide)
+        )
         for field in loginTextFieldsView.textFieldsStackVIew.arrangedSubviews as? [UITextField] ?? [] {
             field.addTarget(self, action: #selector(processField), for: .allEditingEvents)
         }
@@ -167,7 +149,10 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        removeKeyboardAppearanceNotification()
+        keyboardCenter?.removeObserver()
+        self.navigationController?.navigationBar.isHidden = false
+        self.hideKeyboard()
+        keyboardCenter = nil
     }
     
     private func animateAppearanceElements(element object: UIView, transition onTime: Double, delay fromTime: Double) {
@@ -178,37 +163,30 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
         }
     }
     
-    private func registerTapGestureRecognizer() {
-        let tapHideKeyboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapHideKeyboard)
-    }
-    
-    private func registerKeyboardAppearanceNotification() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-    }
-    
-    private func removeKeyboardAppearanceNotification() {
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
+    @objc func processField() {
+        guard let email = loginTextFieldsView.loginTextField,
+              let password = loginTextFieldsView.passwordTextField
+        else { return }
+        var emailIsCorrect: Bool = false
+        var passwordIsCorrect: Bool = false
+        viewModel?.processTextFields(email: email.text, password: password.text) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .loginIsCorrect:
+                self.setupTextFieldBasedOnInput(textField: email, isWrong: false)
+                emailIsCorrect = email.text != ""
+            case .passwordIsCorrect:
+                self.setupTextFieldBasedOnInput(textField: password, isWrong: false)
+                passwordIsCorrect = password.text != ""
+            case .loginIncorrectFormat:
+                self.setupTextFieldBasedOnInput(textField: email, isWrong: true)
+                emailIsCorrect = false
+            default:
+                self.setupTextFieldBasedOnInput(textField: password, isWrong: true)
+                passwordIsCorrect = false
+            }
+            self.loginButtonShouldBeActive(isEmail: emailIsCorrect, isPassword: passwordIsCorrect)
+        }
     }
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
@@ -230,12 +208,14 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
     }
     
     private func setupNavigationBar() {
+        let backButtonItem = UIBarButtonItem()
+        backButtonItem.title = "Log In"
+        navigationItem.backBarButtonItem = backButtonItem
         navigationController?.navigationBar.isHidden = true
     }
  
     private func setupConstraints() {
         loginView.addSubview(loginTextFieldsView)
-        loginTextFieldsView.addSubview(loginTextFieldsView.textFieldsStackVIew)
         backgroundImage.layer.sublayers?.first?.frame = view.bounds
         loginTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         logInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -273,7 +253,7 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
         
         logInButton.topAnchor.constraint(
             equalTo: loginTextFieldsView.bottomAnchor,
-            constant: 30
+            constant: 20
         ).isActive = true
         logInButton.leadingAnchor.constraint(
             equalTo: loginView.leadingAnchor,
@@ -318,5 +298,10 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
         createAccount.heightAnchor.constraint(
             equalToConstant: 16
         ).isActive = true
+    }
+    @IBAction func forgotPasswordAction(_ sender: Any) {
+    }
+    @IBAction func createAccountAction(_ sender: Any) {
+        coordinator?.initializeCreateAccountModule()
     }
 }

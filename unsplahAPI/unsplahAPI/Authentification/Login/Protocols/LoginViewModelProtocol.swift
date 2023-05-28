@@ -11,5 +11,4 @@ protocol LoginViewModelProtocol: AnyObject {
         password: String?,
         completion: (TextFieldProcess) -> Void
     )
-    
 }

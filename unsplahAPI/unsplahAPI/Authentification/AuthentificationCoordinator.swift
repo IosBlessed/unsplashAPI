@@ -23,12 +23,21 @@ final class AuthentificationCoordinator: AuthentificationCoordinatorProtocol {
             animated: false
         )
     }
-    func initializeLoginProcess() {
+    
+    func initializeLoginModule() {
         let loginScreen = LoginBuilder.build() as? LoginViewController
         loginScreen?.coordinator = self 
-        loginScreen!.modalPresentationStyle = .fullScreen
+        loginScreen?.modalPresentationStyle = .fullScreen
         self.navigationController.pushViewController(loginScreen!, animated: false)
     }
+    
+    func initializeCreateAccountModule() {
+        let createAccountScreen = CreateAccountBuilder.build() as? CreateAccountViewController
+        createAccountScreen?.coordinator = self
+        createAccountScreen?.modalPresentationStyle = .fullScreen
+        self.navigationController.pushViewController(createAccountScreen!, animated: true)
+    }
+    
     func didFinishAuthentification() {
         // TODO: realize logic of instantiating of browse module
     }

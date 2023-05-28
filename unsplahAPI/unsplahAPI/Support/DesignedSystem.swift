@@ -22,7 +22,7 @@ struct DesignedSystemFonts {
 }
 
 struct DesignedSystemColors {
-    static let primary: UIColor = UIColor(red: 0.153, green: 0.141, blue: 0.141, alpha: 1)
+    static let primary: UIColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
     static let primaryText: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     static let primaryContrast: UIColor = UIColor(red: 0.949, green: 0.949, blue: 0.949, alpha: 1)
     static let primaryInsignificantText: UIColor = UIColor(red: 0.298, green: 0.314, blue: 0.349, alpha: 1)

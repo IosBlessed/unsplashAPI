@@ -14,7 +14,8 @@ extension UIButton {
         shadow setShadow: Bool,
         cornerRadius: CGFloat = 10.0,
         backgroundColor: UIColor = DesignedSystemColors.primaryContrast,
-        animated: Bool = false
+        animated: Bool = false,
+        shouldBeActive: Bool = true
     ){
         let button = self
         button.layer.cornerRadius = cornerRadius
@@ -36,6 +37,10 @@ extension UIButton {
         )
         if animated {
             button.layer.opacity = 0.0
+        }
+        if !shouldBeActive {
+            button.layer.opacity = 0.5
+            button.isEnabled = shouldBeActive
         }
     }
     
@@ -224,7 +229,7 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
             }),
             completion: ({ [weak self] animationCompleted in
                 guard let self else { return }
-                self.coordinator?.initializeLoginProcess()
+                self.coordinator?.initializeLoginModule()
         }))
     }
 }

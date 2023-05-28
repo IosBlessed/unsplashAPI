@@ -44,6 +44,7 @@ class LoginTextFields: UIView {
             for field in textFieldsStackVIew.arrangedSubviews as? [UITextField] ?? [] {
                 field.isUserInteractionEnabled = true
                 field.autocorrectionType = .no
+                field.keyboardType = .default
             }
         }
     }
@@ -59,11 +60,19 @@ class LoginTextFields: UIView {
             passwordTextField.isSecureTextEntry = true
         }
     }
- 
+    @IBOutlet weak var repeatPasswordTextField: UITextField! {
+        didSet {
+            repeatPasswordTextField.customiseTextField(withWrongInput: TextFieldProcess.passwordsAreNotTheSame.rawValue)
+            repeatPasswordTextField.textContentType = .password
+            repeatPasswordTextField.isSecureTextEntry = true
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         guard let viewFromNib = loadFromNib() else { return }
         self.addSubview(viewFromNib)
+        self.addSubview(textFieldsStackVIew)
     }
     
     required init?(coder: NSCoder) {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3721B5032A229FF1009E408A /* CreateAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3721B5022A229FF1009E408A /* CreateAccountViewController.xib */; };
+		3721B5062A24022A009E408A /* KeyboardCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B5052A24022A009E408A /* KeyboardCenter.swift */; };
 		37876F0E2A1F589300EC54CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F0D2A1F589300EC54CF /* AppDelegate.swift */; };
 		37876F102A1F589300EC54CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F0F2A1F589300EC54CF /* SceneDelegate.swift */; };
 		37876F182A1F589300EC54CF /* unsplahAPI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37876F162A1F589300EC54CF /* unsplahAPI.xcdatamodeld */; };
@@ -103,6 +105,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3721B5022A229FF1009E408A /* CreateAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountViewController.xib; sourceTree = "<group>"; };
+		3721B5052A24022A009E408A /* KeyboardCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCenter.swift; sourceTree = "<group>"; };
 		37876F0A2A1F589300EC54CF /* unsplahAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = unsplahAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37876F0D2A1F589300EC54CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37876F0F2A1F589300EC54CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -211,6 +215,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3721B5042A240215009E408A /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				3721B5052A24022A009E408A /* KeyboardCenter.swift */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
 		37876F012A1F589300EC54CF = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +245,7 @@
 				37876F0D2A1F589300EC54CF /* AppDelegate.swift */,
 				37876F242A1F5ABC00EC54CF /* MainCoordinator.swift */,
 				37876F0F2A1F589300EC54CF /* SceneDelegate.swift */,
+				3721B5042A240215009E408A /* NotificationCenter */,
 				37876F262A1F5AD800EC54CF /* Authentification */,
 				37876F272A1F5AE400EC54CF /* Browse */,
 				37876F282A1F5AEC00EC54CF /* Services */,
@@ -403,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				37876F952A1F726C00EC54CF /* CreateAccountViewController.swift */,
+				3721B5022A229FF1009E408A /* CreateAccountViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -965,6 +979,7 @@
 			files = (
 				378770652A1FB6E400EC54CF /* AuthenticationViewController.xib in Resources */,
 				3787706D2A1FDE6900EC54CF /* SF-Pro-Display-Regular.otf in Resources */,
+				3721B5032A229FF1009E408A /* CreateAccountViewController.xib in Resources */,
 				3787706E2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf in Resources */,
 				37876FC22A1F746200EC54CF /* SettingsViewController.xib in Resources */,
 				37876FDC2A1F752800EC54CF /* RootTabBarViewController.xib in Resources */,
@@ -1057,6 +1072,7 @@
 				37876FD52A1F74D900EC54CF /* RootTabBarModel.swift in Sources */,
 				37876FF22A1F75AF00EC54CF /* PictureDetailsViewController.swift in Sources */,
 				378770322A1F773000EC54CF /* ChangePasswordViewModel.swift in Sources */,
+				3721B5062A24022A009E408A /* KeyboardCenter.swift in Sources */,
 				37876F972A1F726C00EC54CF /* CreateAccountViewController.swift in Sources */,
 				3787704C2A1F789600EC54CF /* AuthenticationServiceProtocol.swift in Sources */,
 				3787701D2A1F76A200EC54CF /* BrowseViewModel.swift in Sources */,
