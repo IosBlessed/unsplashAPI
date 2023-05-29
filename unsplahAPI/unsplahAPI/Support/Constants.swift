@@ -13,4 +13,5 @@ struct Constants {
     static let sanFranciscoRegular: UIFont = UIFont(name: "SFProDisplay-Regular", size: 16) ??
                                              UIFont.systemFont(ofSize: 16, weight: .regular)
     static var authentificationMarginBackgroundImageTop: Double = 0.0
+    static let homeScreenBackgroundImageMovementConstant: CGFloat = 280
 }

@@ -7,11 +7,8 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, LoginViewControllerProtocol {
-    
-    var viewModel: LoginViewModelProtocol?
-    weak var coordinator: AuthentificationCoordinatorProtocol?
-    private var delayOnAnimation: Double = 0.0
+final class LoginViewController: UIViewController, LoginViewControllerProtocol {
+    // MARK: - Outlets
     @IBOutlet private weak var loginView: UIView!
     @IBOutlet private weak var backgroundImage: UIImageView! {
         didSet {
@@ -43,7 +40,6 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
     }
     @IBOutlet private weak var logInButton: UIButton! {
         didSet {
-            logInButton.isEnabled = false
             logInButton.customiseMainActorButton(
                 title: "Log In",
                 shadow: true,
@@ -71,7 +67,11 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
             )
         }
     }
-    
+    // MARK: - Properties
+    var viewModel: LoginViewModelProtocol!
+    unowned var coordinator: AuthentificationCoordinatorProtocol!
+    private var keyboardCenter: KeyboardNotificationCenter?
+    private var delayOnAnimation: Double = 0.0
     private var loginTextFieldsView: LoginTextFields = {
         let loginTextView = LoginTextFields(frame: .zero)
         loginTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,45 +81,24 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
         loginTextView.layer.opacity = 0.0
         return loginTextView
     }()
-    private var keyboardCenter: KeyboardNotificationCenter?
-    
-    private func loginButtonShouldBeActive(isEmail isCorrectEmail: Bool, isPassword isCorrectPassword: Bool) {
-        if isCorrectEmail && isCorrectPassword {
-            logInButton.isEnabled = true
-            logInButton.layer.opacity = 1.0
-        } else {
-            logInButton.isEnabled = false
-            logInButton.layer.opacity = 0.5
-        }
-    }
-    private func setupTextFieldBasedOnInput(textField field: UITextField, isWrong: Bool) {
-        if isWrong {
-            field.textColor = .red
-            field.subviews[0].backgroundColor = .red
-            field.subviews[1].isHidden = false
-        } else {
-            field.textColor = .black
-            field.subviews[0].backgroundColor = DesignedSystemColors.textFieldSeparatorColor
-            field.subviews[1].isHidden = true
-        }
-    }
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
         self.keyboardCenter = KeyboardNotificationCenter(for: self, targetView: self.view)
         self.keyboardCenter?.initializeHideKeyboardGestureRecognizer(selector: #selector(hideKeyboard))
+        setupBindings()
+        addTargetsToTextFields()
+        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavigationBar()
+        keyboardCenter?.initializeHideKeyboardGestureRecognizer(selector: #selector(hideKeyboard))
         keyboardCenter?.registerKeyboardObserver(
             onAppearance: #selector(keyboardWillShow),
             onHide: #selector(keyboardWillHide)
         )
-        for field in loginTextFieldsView.textFieldsStackVIew.arrangedSubviews as? [UITextField] ?? [] {
-            field.addTarget(self, action: #selector(processField), for: .allEditingEvents)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -148,11 +127,35 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         keyboardCenter?.removeObserver()
-        self.navigationController?.navigationBar.isHidden = false
         self.hideKeyboard()
         keyboardCenter = nil
+        super.viewWillDisappear(animated)
+    }
+    // MARK: - Behaviour
+    private func setupBindings() {
+        viewModel.emailIsCorrect.bind { [weak self] isCorrect in
+            guard let self else { return }
+            let loginField = loginTextFieldsView.loginTextField
+            loginTextFieldsView.setupTextFieldBasedOnInput(textField: loginField!, isCorrect: isCorrect)
+        }
+        
+        viewModel.passswordIsCorrect.bind { [weak self] isCorrect in
+            guard let self else { return }
+            let passwordField = loginTextFieldsView.passwordTextField
+            loginTextFieldsView.setupTextFieldBasedOnInput(textField: passwordField!, isCorrect: isCorrect)
+        }
+        viewModel.loginButtonIsActive.bind { [weak self] isEnabled in
+            guard let self else { return }
+            logInButton.shouldButtonBeEnabled(isEnabled: isEnabled)
+        }
+    }
+    
+    private func setupNavigationBar() {
+        let backButtonItem = UIBarButtonItem()
+        backButtonItem.title = "Log In"
+        backButtonItem.tintColor = .black
+        navigationItem.backBarButtonItem = backButtonItem
     }
     
     private func animateAppearanceElements(element object: UIView, transition onTime: Double, delay fromTime: Double) {
@@ -161,57 +164,6 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
             object.layer.opacity = object == self.logInButton ? 0.5 : 1.0
             self.delayOnAnimation += onTime
         }
-    }
-    
-    @objc func processField() {
-        guard let email = loginTextFieldsView.loginTextField,
-              let password = loginTextFieldsView.passwordTextField
-        else { return }
-        var emailIsCorrect: Bool = false
-        var passwordIsCorrect: Bool = false
-        viewModel?.processTextFields(email: email.text, password: password.text) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .loginIsCorrect:
-                self.setupTextFieldBasedOnInput(textField: email, isWrong: false)
-                emailIsCorrect = email.text != ""
-            case .passwordIsCorrect:
-                self.setupTextFieldBasedOnInput(textField: password, isWrong: false)
-                passwordIsCorrect = password.text != ""
-            case .loginIncorrectFormat:
-                self.setupTextFieldBasedOnInput(textField: email, isWrong: true)
-                emailIsCorrect = false
-            default:
-                self.setupTextFieldBasedOnInput(textField: password, isWrong: true)
-                passwordIsCorrect = false
-            }
-            self.loginButtonShouldBeActive(isEmail: emailIsCorrect, isPassword: passwordIsCorrect)
-        }
-    }
-    
-    @objc func keyboardWillShow(_ notification: NSNotification) {
-        UIView.animate(withDuration: 2.0) { [weak self] in
-            self?.loginViewTopConstraint.constant = 35
-            self?.view.layoutIfNeeded()
-        }
-    }
-
-    @objc func keyboardWillHide(_ notification: NSNotification) {
-        UIView.animate(withDuration: 2.0) { [weak self] in
-            self?.loginViewTopConstraint.constant = Constants.authentificationMarginBackgroundImageTop
-            self?.view.layoutIfNeeded()
-        }
-    }
-    
-    @objc func hideKeyboard() {
-        view.endEditing(true)
-    }
-    
-    private func setupNavigationBar() {
-        let backButtonItem = UIBarButtonItem()
-        backButtonItem.title = "Log In"
-        navigationItem.backBarButtonItem = backButtonItem
-        navigationController?.navigationBar.isHidden = true
     }
  
     private func setupConstraints() {
@@ -299,9 +251,43 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol {
             equalToConstant: 16
         ).isActive = true
     }
-    @IBAction func forgotPasswordAction(_ sender: Any) {
+    
+    private func addTargetsToTextFields() {
+        for field in loginTextFieldsView.textFieldsStackVIew.arrangedSubviews as? [UITextField] ?? [] {
+            field.addTarget(self, action: #selector(textFieldChangesText), for: .editingChanged)
+        }
     }
+    // MARK: - Selectors
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        UIView.animate(withDuration: 2.0) { [weak self] in
+            self?.loginViewTopConstraint.constant = 35
+            self?.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        UIView.animate(withDuration: 2.0) { [weak self] in
+            self?.loginViewTopConstraint.constant = Constants.authentificationMarginBackgroundImageTop
+            self?.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    @objc func textFieldChangesText() {
+        let email = loginTextFieldsView.loginTextField.text
+        let password = loginTextFieldsView.passwordTextField.text
+        viewModel?.processTextFields(email: email, password: password)
+    }
+    
+    // MARK: - Actions
+    @IBAction func forgotPasswordAction(_ sender: Any) {
+        coordinator?.initializeForgotPasswordModule()
+    }
+    
     @IBAction func createAccountAction(_ sender: Any) {
-        coordinator?.initializeCreateAccountModule()
+        coordinator?.initializeCreateAccountModule(isFirstResponder: true)
     }
 }

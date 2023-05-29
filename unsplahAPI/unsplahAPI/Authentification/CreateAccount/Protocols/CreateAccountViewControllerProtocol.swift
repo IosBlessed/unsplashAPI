@@ -6,6 +6,6 @@
 //
 
 protocol CreateAccountViewControllerProtocol: AnyObject {
-    var viewModel: CreateAccountViewModelProtocol? { get set }
-    var coordinator: AuthentificationCoordinatorProtocol? { get set }
+    var viewModel: CreateAccountViewModelProtocol! { get set }
+    var coordinator: AuthentificationCoordinatorProtocol! { get set }
 }

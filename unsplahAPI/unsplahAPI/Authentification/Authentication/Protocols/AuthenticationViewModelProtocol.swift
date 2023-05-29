@@ -7,6 +7,6 @@
 import UIKit
 
 protocol AuthenticationViewModelProtocol: AnyObject {
-    var user: User { get }
+    var isAuthenticated: Observable<Bool> { get }
     func authenticate(username: String, password: String)
 }

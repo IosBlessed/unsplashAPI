@@ -7,10 +7,8 @@
 
 import UIKit
 
-
-class CreateAccountViewController: UIViewController, CreateAccountViewControllerProtocol {
-    var viewModel: CreateAccountViewModelProtocol?
-    weak var coordinator: AuthentificationCoordinatorProtocol?
+final class CreateAccountViewController: UIViewController, CreateAccountViewControllerProtocol {
+    // MARK: - Outlets
     @IBOutlet private weak var createAccountView: UIView!
     @IBOutlet private weak var createAccountLabel: UILabel! {
         didSet {
@@ -21,13 +19,16 @@ class CreateAccountViewController: UIViewController, CreateAccountViewController
         didSet {
             createAccountButton.customiseMainActorButton(
                 title: "Create Account",
-                shadow: true,
-                shouldBeActive: false
+                shadow: true
             )
         }
     }
     @IBOutlet private weak var createAccountTopConstraint: NSLayoutConstraint!
-    private var constantOfLabelTopConstraint: CGFloat!
+    // MARK: - Properties
+    var viewModel: CreateAccountViewModelProtocol!
+    unowned var coordinator: AuthentificationCoordinatorProtocol!
+    private var keyboardCenter: KeyboardNotificationCenter?
+    private var constantOfLoginLabelTopConstraint: CGFloat!
     private var createAccountTextFieldsView: LoginTextFields = {
         let createAccountView = LoginTextFields(frame: .zero)
         createAccountView.loginTextField.placeholder = "Enter your email"
@@ -35,16 +36,16 @@ class CreateAccountViewController: UIViewController, CreateAccountViewController
         createAccountView.repeatPasswordTextField.placeholder = "Confirm your password"
         return createAccountView
     }()
-    private var keyboardCenter: KeyboardNotificationCenter?
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
         initializeTargetsForTextFields()
+        setupBindings()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavigationBar()
         keyboardCenter?.registerKeyboardObserver(
             onAppearance: #selector(keyboardWillShow),
             onHide: #selector(keyboardWillHide)
@@ -55,17 +56,50 @@ class CreateAccountViewController: UIViewController, CreateAccountViewController
         super.viewWillLayoutSubviews()
         setupConstraints()
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardCenter?.removeObserver()
         self.hideKeyboard()
         keyboardCenter = nil
-        
     }
+    // MARK: - Behaviour
     private func initialSetup() {
         setupKeyboardCenter()
-        self.constantOfLabelTopConstraint = createAccountTopConstraint.constant
+        self.constantOfLoginLabelTopConstraint = createAccountTopConstraint.constant
         self.createAccountView.backgroundColor = DesignedSystemColors.primary
+    }
+    
+    private func setupBindings() {
+        guard let emailField = createAccountTextFieldsView.loginTextField,
+              let passwordField = createAccountTextFieldsView.passwordTextField,
+              let confirmedPassword = createAccountTextFieldsView.repeatPasswordTextField
+        else { return }
+        viewModel?.emailIsCorrect.bind { [weak self] isCorrect in
+            guard let self else { return }
+            self.createAccountTextFieldsView.setupTextFieldBasedOnInput(
+                textField: emailField,
+                isCorrect: isCorrect
+            )
+        }
+        viewModel?.passwordIsCorrect.bind { [weak self] isCorrect in
+            guard let self else { return }
+            self.createAccountTextFieldsView.setupTextFieldBasedOnInput(
+                textField: passwordField,
+                isCorrect: isCorrect
+            )
+        }
+        viewModel?.repeatedPassword.bind { [weak self] passwordsMatch in
+            guard let self else { return }
+            self.createAccountTextFieldsView.setupTextFieldBasedOnInput(
+                textField: confirmedPassword,
+                isCorrect: passwordsMatch
+            )
+        }
+        viewModel.shouldEnableButtonCreateAccount.bind { [weak self] isEnabled in
+            guard let self else { return }
+            self.createAccountButton.shouldButtonBeEnabled(isEnabled: isEnabled)
+        }
     }
     
     private func setupKeyboardCenter() {
@@ -76,11 +110,6 @@ class CreateAccountViewController: UIViewController, CreateAccountViewController
         self.keyboardCenter?.initializeHideKeyboardGestureRecognizer(
             selector: #selector(hideKeyboard)
         )
-    }
-    
-    private func setupNavigationBar() {
-        self.navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.tintColor = .black
     }
     
     private func setupConstraints() {
@@ -125,69 +154,12 @@ class CreateAccountViewController: UIViewController, CreateAccountViewController
             field.addTarget(self, action: #selector(processInput), for: .allEditingEvents)
         }
     }
-    
-    private func setupTextFieldBasedOnInput(textField field: UITextField, isWrong: Bool) {
-        if isWrong {
-            field.textColor = .red
-            field.subviews[0].backgroundColor = .red
-            field.subviews[1].isHidden = false
-        } else {
-            field.textColor = .black
-            field.subviews[0].backgroundColor = DesignedSystemColors.textFieldSeparatorColor
-            field.subviews[1].isHidden = true
-        }
-    }
-    
-    private func createAccountButtonShouldBeActive(
-        isEmail isCorrectEmail: Bool,
-        isPassword isCorrectPassword: Bool,
-        isEqualPasswords: Bool
-    ) {
-        if isCorrectEmail && isCorrectPassword && isEqualPasswords {
-            createAccountButton.isEnabled = true
-            createAccountButton.layer.opacity = 1.0
-        } else {
-            createAccountButton.isEnabled = false
-            createAccountButton.layer.opacity = 0.5
-        }
-    }
-    
+    // MARK: - Selectors
     @objc func processInput() {
-        guard  let email = createAccountTextFieldsView.loginTextField,
-               let password = createAccountTextFieldsView.passwordTextField,
-               let confirmedPassword = createAccountTextFieldsView.repeatPasswordTextField
-        else { return }
-        var emailIsCorrect: Bool = false
-        var passwordIsCorrect: Bool = false
-        var equalPasswords: Bool = false
-        viewModel?.processCreationOfUser(
-            email: email.text,
-            password: password.text,
-            confirmedPassword: confirmedPassword.text
-        ) { [weak self] inputStatus in
-            guard let self else { return }
-            switch inputStatus {
-            case .loginIsCorrect:
-                self.setupTextFieldBasedOnInput(textField: email, isWrong: false)
-                emailIsCorrect = email.text != ""
-            case .passwordIsCorrect:
-                self.setupTextFieldBasedOnInput(textField: password, isWrong: false)
-                passwordIsCorrect = password.text != ""
-            case .passwordsAreTheSame:
-                self.setupTextFieldBasedOnInput(textField: confirmedPassword, isWrong: false)
-                equalPasswords = confirmedPassword.text != ""
-            case .loginIncorrectFormat:
-                self.setupTextFieldBasedOnInput(textField: email, isWrong: true)
-                emailIsCorrect = false
-            case .passwordIsShort:
-                self.setupTextFieldBasedOnInput(textField: password, isWrong: true)
-                passwordIsCorrect = false
-            case .passwordsAreNotTheSame:
-                self.setupTextFieldBasedOnInput(textField: confirmedPassword, isWrong: true)
-                equalPasswords = false
-            }
-            self.createAccountButtonShouldBeActive(isEmail: emailIsCorrect, isPassword: passwordIsCorrect, isEqualPasswords: equalPasswords)
-        }
+        let email = createAccountTextFieldsView.loginTextField.text
+        let password = createAccountTextFieldsView.passwordTextField.text
+        let confirmedPassword = createAccountTextFieldsView.repeatPasswordTextField.text
+        viewModel.processCreationOfUser(email: email, password: password, confirmedPassword: confirmedPassword)
     }
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
@@ -201,7 +173,7 @@ class CreateAccountViewController: UIViewController, CreateAccountViewController
     @objc func keyboardWillHide(_ notification: NSNotification) {
         UIView.animate(withDuration: 2.0) { [weak self] in
             guard let self else { return }
-            self.createAccountTopConstraint.constant = self.constantOfLabelTopConstraint
+            self.createAccountTopConstraint.constant = self.constantOfLoginLabelTopConstraint
             self.view.layoutIfNeeded()
         }
     }

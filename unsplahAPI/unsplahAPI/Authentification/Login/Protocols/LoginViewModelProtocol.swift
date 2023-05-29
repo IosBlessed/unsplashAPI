@@ -6,9 +6,8 @@
 //
 
 protocol LoginViewModelProtocol: AnyObject {
-    func processTextFields(
-        email: String?,
-        password: String?,
-        completion: (TextFieldProcess) -> Void
-    )
+    var emailIsCorrect: Observable<Bool> { get }
+    var passswordIsCorrect: Observable<Bool> { get }
+    var loginButtonIsActive: Observable<Bool> { get }
+    func processTextFields(email: String?, password: String?)
 }

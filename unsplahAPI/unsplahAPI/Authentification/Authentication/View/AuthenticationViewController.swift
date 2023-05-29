@@ -6,80 +6,9 @@
 //
 
 import UIKit
-import Combine
 
-extension UIButton {
-    func customiseMainActorButton(
-        title buttonTitle: String,
-        shadow setShadow: Bool,
-        cornerRadius: CGFloat = 10.0,
-        backgroundColor: UIColor = DesignedSystemColors.primaryContrast,
-        animated: Bool = false,
-        shouldBeActive: Bool = true
-    ){
-        let button = self
-        button.layer.cornerRadius = cornerRadius
-        button.backgroundColor = DesignedSystemColors.primaryContrast
-        if setShadow {
-            button.layer.shadowColor = UIColor.black.cgColor
-            button.layer.shadowOpacity = 1.0
-            button.layer.shadowOffset = .zero
-            button.layer.shadowRadius = 4.0
-        }
-        button.setAttributedTitle(
-            NSAttributedString(
-                string: buttonTitle,
-                attributes: [
-                    NSAttributedString.Key.font: DesignedSystemFonts.button,
-                    NSAttributedString.Key.foregroundColor: DesignedSystemColors.primaryText
-                ]),
-            for: .normal
-        )
-        if animated {
-            button.layer.opacity = 0.0
-        }
-        if !shouldBeActive {
-            button.layer.opacity = 0.5
-            button.isEnabled = shouldBeActive
-        }
-    }
-    
-    func customiseFootnoteButton(
-        title titleText: String,
-        fontColor foregroundColor: UIColor,
-        font: UIFont,
-        animated: Bool = false
-    ) {
-        let button = self
-        button.setAttributedTitle(
-            NSAttributedString(
-                string: titleText,
-                attributes: [
-                    NSAttributedString.Key.font: font,
-                    NSAttributedString.Key.foregroundColor: foregroundColor
-                ]
-            ),
-            for: .normal
-        )
-        if animated {
-            button.layer.opacity = 0.0
-        }
-    }
-}
-
-class AuthenticationViewController: UIViewController, AuthenticationViewControllerProtocol {
-
-    var coordinator: AuthentificationCoordinatorProtocol?
-    var viewModel: AuthenticationViewModelProtocol?
-    private var userCancelable: AnyCancellable?
-    private var unitOpacity: Float! {
-        didSet {
-            for button in buttonsStackView.arrangedSubviews as? [UIButton] ?? [] {
-                button.layer.opacity = unitOpacity
-            }
-            underButtonsLabel.layer.opacity = unitOpacity
-        }
-    }
+final class AuthenticationViewController: UIViewController, AuthenticationViewControllerProtocol {
+    // MARK: - Outlets
     @IBOutlet private weak var homeScreenView: UIView! {
         didSet {
             homeScreenView.backgroundColor = .white
@@ -118,21 +47,28 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
             )
         }
     }
-
+    // MARK: - Properties
+    var coordinator: AuthentificationCoordinatorProtocol!
+    var viewModel: AuthenticationViewModelProtocol!
+    private var unitOpacity: Float! {
+        didSet {
+            for button in buttonsStackView.arrangedSubviews as? [UIButton] ?? [] {
+                button.layer.opacity = unitOpacity
+            }
+            underButtonsLabel.layer.opacity = unitOpacity
+        }
+    }
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        userCancelable = viewModel?.user.$authenticationState.sink { [weak self] autheticationState in
-            switch autheticationState {
-            case .unauthenticated:
-                // TODO: show auth screen
-                self?.authenticationProcess(result: .failure(AuthenticationErrors.unableToIdentifyUser))
-            case .authenticated:
-                self?.authenticationProcess(result: .success(self?.viewModel?.user))
-            case .authenticating:
-                // TODO: perform default process
-                print(autheticationState)
+        setupNavigationBar()
+        viewModel?.isAuthenticated.bind { [weak self] isAuthenticated in
+            guard let self else { return }
+            if isAuthenticated {
+                self.coordinator?.didFinishAuthentification()
             }
         }
+        constructView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -145,8 +81,8 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
         let transitionOfScrollViewUp: Double = 1.0
         UIView.animate(withDuration: transitionOfScrollViewUp) { [weak self] in
             guard let self else { return }
-            self.backgroundImageTopConstraint.constant = -280
-            self.backgroundImageBottomConstraint.constant = 280
+            self.backgroundImageTopConstraint.constant = -Constants.homeScreenBackgroundImageMovementConstant
+            self.backgroundImageBottomConstraint.constant = Constants.homeScreenBackgroundImageMovementConstant
             homeScreenView.layoutIfNeeded()
         }
         UIView.animate(withDuration: 1.0, delay: transitionOfScrollViewUp) { [weak self] in
@@ -155,25 +91,18 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        userCancelable = nil
+    // MARK: - Behaviour
+    private func setupNavigationBar() {
+        let backButton = UIBarButtonItem()
+        backButton.title = "Log In"
+        backButton.tintColor = .black
+        navigationItem.backBarButtonItem = backButton
     }
-
-    private func authenticationProcess(result: Result <User?, AuthenticationErrors>) {
-        switch result {
-        case .success(let _):
-            coordinator?.didFinishAuthentification()
-        case .failure(let error):
-            self.constructView()
-            print(error.rawValue)
-        }
-    }
-
+    
     private func constructView() {
         setupConstraints()
     }
-
+    
     private func setupConstraints() {
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         underButtonsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -211,25 +140,32 @@ class AuthenticationViewController: UIViewController, AuthenticationViewControll
         ).isActive = true
     }
     
+    private func animateViewControllerDissapear() {
+        let marginFromTop = homeScreenView.bounds.height / 1.7
+        Constants.authentificationMarginBackgroundImageTop = view.bounds.height - marginFromTop
+        self.backgroundImageTopConstraint.constant = -view.bounds.height
+        self.backgroundImageBottomConstraint.constant = view.bounds.height
+        self.unitOpacity = 0.0
+        homeScreenView.layoutIfNeeded()
+    }
+    // MARK: - Actions
     @IBAction func createAccountAction(_ sender: Any) {
-    
+        UIView.animate(
+            withDuration: 1.0,
+            animations: animateViewControllerDissapear
+        ) { [weak self] _ in
+            guard let self else { return }
+            self.coordinator?.initializeCreateAccountModule(isFirstResponder: false)
+        }
     }
     
     @IBAction func logInAction(_ sender: Any) {
         UIView.animate(
             withDuration: 1.0,
-            animations: ( { [weak self] in
-                guard let self else { return }
-                let marginFromTop = homeScreenView.bounds.height / 1.7
-                Constants.authentificationMarginBackgroundImageTop = view.bounds.height - marginFromTop
-                self.backgroundImageTopConstraint.constant = -view.bounds.height
-                self.backgroundImageBottomConstraint.constant = view.bounds.height
-                self.unitOpacity = 0.0
-                homeScreenView.layoutIfNeeded()
-            }),
-            completion: ({ [weak self] animationCompleted in
+            animations: animateViewControllerDissapear
+        ) { [weak self] _ in
                 guard let self else { return }
                 self.coordinator?.initializeLoginModule()
-        }))
+        }
     }
 }

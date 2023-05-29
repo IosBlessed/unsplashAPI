@@ -6,6 +6,6 @@
 //
 
 protocol LoginViewControllerProtocol: AnyObject {
-    var viewModel: LoginViewModelProtocol? { get set }
-    var coordinator: AuthentificationCoordinatorProtocol? { get set }
+    var viewModel: LoginViewModelProtocol! { get set }
+    var coordinator: AuthentificationCoordinatorProtocol! { get set }
 }

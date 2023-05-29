@@ -7,44 +7,26 @@
 import Combine
 import UIKit
 
-enum AuthenticationState: String, CaseIterable {
-    case authenticating
-    case unauthenticated
-    case authenticated
-}
-
-enum AuthenticationFlow: String {
-    case login
-    case signUp
-}
-
-enum AuthenticationErrors: String, Error {
-    case unableToIdentifyUser = "User is not authenticated!"
-    func localizedDescription() -> String {
-        return self.rawValue
+final class AuthenticationViewModel: AuthenticationViewModelProtocol {
+    // MARK: - Properties
+    var isAuthenticated: Observable<Bool> = Observable(false)
+    var user: User? {
+        didSet {
+            switch user!.authenticationState {
+            case .authenticated:
+                self.isAuthenticated.observedObject = true
+            default:
+                print(user!.authenticationState)
+            }
+        }
     }
-}
-
-class User: ObservableObject {
-    @Published var username: String? = ""
-    @Published var password: String? = ""
-    @Published var email: String? = ""
-    @Published var authenticationState: AuthenticationState = .unauthenticated
-    @Published var authenticationFlow: AuthenticationFlow = .login
-
-    func logOut() {
-        username = nil
-        password = nil
-        email = nil
-        authenticationState = .unauthenticated
+    // MARK: - Lifecycle
+    init() {
+        self.user = User()
     }
-}
-
-class AuthenticationViewModel: AuthenticationViewModelProtocol {
-    var user: User = User()
-
+    // MARK: - Behaviour
     func authenticate(username: String, password: String) {
         // TODO: request for user's authentication
-        // if user not exists, authentication state => unauthenticate
+        // extraction user and assign to model of User()
     }
 }

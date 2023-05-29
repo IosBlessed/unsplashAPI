@@ -6,11 +6,10 @@
 //
 
 protocol CreateAccountViewModelProtocol: AnyObject {
-    func processCreationOfUser(
-        email: String?,
-        password: String?,
-        confirmedPassword: String?,
-        completion: (TextFieldProcess) -> Void
-    )
+    var emailIsCorrect: Observable <Bool> { get set }
+    var passwordIsCorrect: Observable <Bool> { get set }
+    var repeatedPassword: Observable <Bool> { get set }
+    var shouldEnableButtonCreateAccount: Observable <Bool> { get set }
+    func processCreationOfUser(email: String?, password: String?, confirmedPassword: String?)
     func createUser()
 }

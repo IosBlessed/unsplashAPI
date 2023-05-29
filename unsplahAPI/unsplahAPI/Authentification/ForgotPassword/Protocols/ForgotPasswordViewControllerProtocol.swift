@@ -5,4 +5,7 @@
 //  Created by Никита Данилович on 25.05.2023.
 //
 
-import Foundation
+protocol ForgotPasswordViewControllerProtocol: AnyObject {
+    var viewModel: ForgotPasswordViewModelProtocol! { get }
+    var coordinator: AuthentificationCoordinatorProtocol! { get set }
+}
