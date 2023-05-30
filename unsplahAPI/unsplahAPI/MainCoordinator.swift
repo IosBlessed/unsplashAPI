@@ -7,13 +7,13 @@
 
 import UIKit
 
-class MainCoordinator: NSObject, UINavigationControllerDelegate {
+final class MainCoordinator: NSObject, UINavigationControllerDelegate {
     unowned var navigationController: UINavigationController
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     func start() {
         let coordinator = AuthentificationCoordinator(navigationController: navigationController)
         coordinator.initializeAuthorizationProcess()
