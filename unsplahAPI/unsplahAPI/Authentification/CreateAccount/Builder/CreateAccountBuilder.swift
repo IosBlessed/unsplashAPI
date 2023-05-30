@@ -12,6 +12,7 @@ struct CreateAccountBuilder {
         let createAccount = CreateAccountViewController()
         let viewModel = CreateAccountViewModel()
         createAccount.viewModel = viewModel
+        createAccount.modalPresentationStyle = .fullScreen
         return createAccount
     }
 }

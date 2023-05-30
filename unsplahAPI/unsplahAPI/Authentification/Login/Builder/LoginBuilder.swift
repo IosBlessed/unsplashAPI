@@ -10,6 +10,7 @@ struct LoginBuilder {
         let loginVC = LoginViewController()
         let viewModel = LoginViewModel()
         loginVC.viewModel = viewModel
+        loginVC.modalPresentationStyle = .fullScreen
         return loginVC
     }
 }

@@ -10,9 +10,11 @@ import UIKit
 final class AuthentificationCoordinator: AuthentificationCoordinatorProtocol {
     // MARK: - Properties
     unowned var navigationController: UINavigationController
+    var mainCoordinator: MainCoordinator
     // MARK: - Lifecycle
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, mainCoordinator: MainCoordinator) {
         self.navigationController = navigationController
+        self.mainCoordinator = mainCoordinator
     }
     // MARK: - Behaviour
     func initializeAuthorizationProcess() {
@@ -25,27 +27,24 @@ final class AuthentificationCoordinator: AuthentificationCoordinatorProtocol {
     }
     
     func initializeLoginModule() {
-        let loginScreen = LoginBuilder.build() as? LoginViewController ?? LoginViewController()
-        loginScreen.coordinator = self
-        loginScreen.modalPresentationStyle = .fullScreen
-        self.navigationController.pushViewController(loginScreen, animated: false)
+        let loginScreen = LoginBuilder.build() as? LoginViewController
+        loginScreen!.coordinator = self
+        self.navigationController.pushViewController(loginScreen!, animated: false)
     }
     
     func initializeCreateAccountModule(isFirstResponder: Bool) {
-        let createAccountScreen = CreateAccountBuilder.build() as? CreateAccountViewController ?? CreateAccountViewController()
-        createAccountScreen.coordinator = self
-        createAccountScreen.modalPresentationStyle = .fullScreen
-        self.navigationController.pushViewController(createAccountScreen, animated: isFirstResponder)
+        let createAccountScreen = CreateAccountBuilder.build() as? CreateAccountViewController
+        createAccountScreen!.coordinator = self
+        self.navigationController.pushViewController(createAccountScreen!, animated: isFirstResponder)
     }
     
     func initializeForgotPasswordModule() {
-        let forgotPassword = ForgotPasswordBuilder.build() as? ForgotPasswordViewController ?? ForgotPasswordViewController()
-        forgotPassword.coordinator = self
-        forgotPassword.modalPresentationStyle = .fullScreen
-        self.navigationController.pushViewController(forgotPassword, animated: true)
+        let forgotPassword = ForgotPasswordBuilder.build() as? ForgotPasswordViewController
+        forgotPassword!.coordinator = self
+        self.navigationController.pushViewController(forgotPassword!, animated: true)
     }
     
     func didFinishAuthentification() {
-        // TODO: realize logic of instantiating of browse module
+        mainCoordinator.startBrowse()
     }
 }

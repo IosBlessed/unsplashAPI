@@ -8,11 +8,11 @@
 import UIKit
 
 final class LoginViewModel: LoginViewModelProtocol {
-    //MARK: - Properties
+    // MARK: - Properties
     var emailIsCorrect: Observable<Bool> = Observable(true)
     var passswordIsCorrect: Observable<Bool> = Observable(true)
     var loginButtonIsActive: Observable<Bool> = Observable(true)
-    //MARK: - Behaviour
+    // MARK: - Behaviour
     func processTextFields(email: String?, password: String?) {
         guard let email, let password else { return }
         

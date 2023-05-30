@@ -56,10 +56,8 @@
 		37876FD42A1F74D900EC54CF /* RootTabBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FCA2A1F74D900EC54CF /* RootTabBarBuilder.swift */; };
 		37876FD52A1F74D900EC54CF /* RootTabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FCC2A1F74D900EC54CF /* RootTabBarModel.swift */; };
 		37876FD62A1F74D900EC54CF /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FCE2A1F74D900EC54CF /* RootTabBarViewModel.swift */; };
-		37876FD72A1F74D900EC54CF /* RootTabBarViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FD02A1F74D900EC54CF /* RootTabBarViewModelProtocol.swift */; };
 		37876FD82A1F74D900EC54CF /* RootTabBarViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FD12A1F74D900EC54CF /* RootTabBarViewControllerProtocol.swift */; };
 		37876FDB2A1F752800EC54CF /* RootTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FD92A1F752800EC54CF /* RootTabBarViewController.swift */; };
-		37876FDC2A1F752800EC54CF /* RootTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37876FDA2A1F752800EC54CF /* RootTabBarViewController.xib */; };
 		37876FE92A1F758400EC54CF /* PictureDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FDE2A1F758400EC54CF /* PictureDetailsModel.swift */; };
 		37876FEC2A1F758400EC54CF /* PictureDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FE32A1F758400EC54CF /* PictureDetailsViewModel.swift */; };
 		37876FED2A1F758400EC54CF /* PictureDetailsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876FE52A1F758400EC54CF /* PictureDetailsViewModelProtocol.swift */; };
@@ -162,10 +160,8 @@
 		37876FCA2A1F74D900EC54CF /* RootTabBarBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabBarBuilder.swift; sourceTree = "<group>"; };
 		37876FCC2A1F74D900EC54CF /* RootTabBarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabBarModel.swift; sourceTree = "<group>"; };
 		37876FCE2A1F74D900EC54CF /* RootTabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabBarViewModel.swift; sourceTree = "<group>"; };
-		37876FD02A1F74D900EC54CF /* RootTabBarViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabBarViewModelProtocol.swift; sourceTree = "<group>"; };
 		37876FD12A1F74D900EC54CF /* RootTabBarViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabBarViewControllerProtocol.swift; sourceTree = "<group>"; };
 		37876FD92A1F752800EC54CF /* RootTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewController.swift; sourceTree = "<group>"; };
-		37876FDA2A1F752800EC54CF /* RootTabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootTabBarViewController.xib; sourceTree = "<group>"; };
 		37876FDE2A1F758400EC54CF /* PictureDetailsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureDetailsModel.swift; sourceTree = "<group>"; };
 		37876FE32A1F758400EC54CF /* PictureDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureDetailsViewModel.swift; sourceTree = "<group>"; };
 		37876FE52A1F758400EC54CF /* PictureDetailsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureDetailsViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -305,12 +301,12 @@
 			children = (
 				37876F4F2A1F6E8500EC54CF /* BrowseCoordinator.swift */,
 				37876FAD2A1F737300EC54CF /* BrowseCoordinatorProtocol.swift */,
+				37876F512A1F6EA900EC54CF /* RootTabBar */,
+				37876F582A1F6F4E00EC54CF /* Liked */,
 				37876F5A2A1F6F6500EC54CF /* ChangePassword */,
 				37876F592A1F6F5E00EC54CF /* Settings */,
-				37876F582A1F6F4E00EC54CF /* Liked */,
 				37876F572A1F6F4200EC54CF /* PictureDetails */,
 				37876F562A1F6F2D00EC54CF /* Browse  */,
-				37876F512A1F6EA900EC54CF /* RootTabBar */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -518,8 +514,8 @@
 		37876F512A1F6EA900EC54CF /* RootTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				37876FCF2A1F74D900EC54CF /* Protocols */,
 				37876FC92A1F74D900EC54CF /* Builder */,
+				37876FCF2A1F74D900EC54CF /* Protocols */,
 				37876FCB2A1F74D900EC54CF /* Model */,
 				37876FC62A1F74D900EC54CF /* View */,
 				37876FCD2A1F74D900EC54CF /* ViewModel */,
@@ -709,7 +705,6 @@
 			isa = PBXGroup;
 			children = (
 				37876FD92A1F752800EC54CF /* RootTabBarViewController.swift */,
-				37876FDA2A1F752800EC54CF /* RootTabBarViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -741,7 +736,6 @@
 		37876FCF2A1F74D900EC54CF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				37876FD02A1F74D900EC54CF /* RootTabBarViewModelProtocol.swift */,
 				37876FD12A1F74D900EC54CF /* RootTabBarViewControllerProtocol.swift */,
 			);
 			path = Protocols;
@@ -1016,7 +1010,6 @@
 				3721B5032A229FF1009E408A /* CreateAccountViewController.xib in Resources */,
 				3787706E2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf in Resources */,
 				37876FC22A1F746200EC54CF /* SettingsViewController.xib in Resources */,
-				37876FDC2A1F752800EC54CF /* RootTabBarViewController.xib in Resources */,
 				378770632A1FB4C100EC54CF /* homeScreen.png in Resources */,
 				378770382A1F775E00EC54CF /* ChangePasswordViewController.xib in Resources */,
 				3721B50A2A24131F009E408A /* ForgotPasswordViewController.xib in Resources */,
@@ -1062,7 +1055,6 @@
 				37876F182A1F589300EC54CF /* unsplahAPI.xcdatamodeld in Sources */,
 				378770032A1F760800EC54CF /* LikedViewModelProtocol.swift in Sources */,
 				378770442A1F785800EC54CF /* UnsplashAPIService.swift in Sources */,
-				37876FD72A1F74D900EC54CF /* RootTabBarViewModelProtocol.swift in Sources */,
 				3787702E2A1F773000EC54CF /* ChangePasswordBuilder.swift in Sources */,
 				3787702F2A1F773000EC54CF /* ChangePasswordModel.swift in Sources */,
 				3721B5162A25DCA6009E408A /* Keychain.swift in Sources */,

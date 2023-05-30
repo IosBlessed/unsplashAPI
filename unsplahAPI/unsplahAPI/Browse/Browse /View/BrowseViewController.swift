@@ -7,8 +7,10 @@
 
 import UIKit
 
-class BrowseViewController: UIViewController {
-
+class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
+    
+    var viewModel: BrowseViewModelProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

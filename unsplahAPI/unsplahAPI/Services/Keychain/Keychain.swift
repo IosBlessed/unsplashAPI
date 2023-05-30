@@ -30,18 +30,19 @@ enum KeychainSuccess {
 }
 
 class KeychainService {
-    
-    static let shared = KeychainService()
+    // MARK: - Typealias
     typealias PasswordDetails = [String: String]
+    // MARK: - Properties
     private var username = ""
     private var password = Data()
     private var queryForModifications: [String: Any] = [
         kSecClass as String: kSecClassInternetPassword,
         kSecAttrServer as String: Constants.serverAppName
     ]
-    
+    // MARK: - Singleton
+    static let shared = KeychainService()
     private init() {}
-    
+    // MARK: - Create
     func savePassword(
         username: String,
         password: String,
@@ -59,9 +60,18 @@ class KeychainService {
         }
     }
     
-    func getPassword(handler: @escaping (Result<PasswordDetails?, KeychainError>) -> Void) {
+    private func savePasswordToKeychain() throws {
+        let keychainQuery: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                    kSecAttrAccount as String: username,
+                                    kSecAttrServer as String: Constants.serverAppName,
+                                    kSecValueData as String: password]
+        let status = SecItemAdd(keychainQuery as CFDictionary, nil)
+        guard status == errSecSuccess else { throw KeychainError.unableToSavePassword }
+    }
+    // MARK: - Read
+    func getPassword(handler: @escaping (Result<PasswordDetails, KeychainError>) -> Void) {
         do {
-            let userData = try extractPasswordFromKeychain()
+            let userData = try getPasswordFromKeychain()
             let passwordData = userData?[kSecValueData as String] as? Data ?? Data()
             let userCredentials = [
                 KeychainUserKeys.username.rawValue: userData?[kSecAttrAccount as String] as? String ?? "Unknown",
@@ -75,6 +85,23 @@ class KeychainService {
         }
     }
     
+    private func getPasswordFromKeychain() throws -> [String: Any]? {
+        let keychainQuery: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                    kSecAttrServer as String: Constants.serverAppName,
+                                    kSecMatchLimit as String: kSecMatchLimitOne,
+                                    kSecReturnAttributes as String: true,
+                                    kSecReturnData as String: true]
+        var keychainData: CFTypeRef?
+        let status = SecItemCopyMatching(keychainQuery as CFDictionary, &keychainData)
+        guard status != errSecItemNotFound else { throw KeychainError.passwordMissMatch }
+        guard status == errSecSuccess else { throw KeychainError.unableToExtractPassword }
+        guard let userCredentials = keychainData as? [String: Any]
+        else {
+            throw KeychainError.unexpectedPasswordData
+        }
+        return userCredentials
+    }
+    // MARK: - Update
     func updatePassword(
         newUsername username: String,
         newPassword password: String,
@@ -92,6 +119,16 @@ class KeychainService {
         }
     }
     
+    private func updatePasswordFromKeychain() throws {
+        let newAttributes: [String: Any] = [
+            kSecAttrAccount as String: username,
+            kSecValueData as String: password
+        ]
+        let status = SecItemUpdate(queryForModifications as CFDictionary, newAttributes as CFDictionary)
+        guard status != errSecItemNotFound else { throw KeychainError.passwordMissMatch}
+        guard status == errSecSuccess else { throw KeychainError.unableToUpdatePassword }
+    }
+    // MARK: - Delete
     func deletePassword(handler: @escaping (Result<KeychainSuccess, KeychainError>) -> Void) {
         do {
             try deletePasswordFromKeychain()
@@ -101,42 +138,6 @@ class KeychainService {
         } catch {
             handler(.failure(.unableToProcessRequest))
         }
-    }
-    
-    private func savePasswordToKeychain() throws {
-        let keychainQuery: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrAccount as String: username,
-                                    kSecAttrServer as String: Constants.serverAppName,
-                                    kSecValueData as String: password]
-        let status = SecItemAdd(keychainQuery as CFDictionary, nil)
-        guard status == errSecSuccess else { throw KeychainError.unableToSavePassword }
-    }
-    
-    private func extractPasswordFromKeychain() throws -> [String: Any]? {
-        let keychainQuery: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrServer as String: Constants.serverAppName,
-                                    kSecMatchLimit as String: kSecMatchLimitOne,
-                                    kSecReturnAttributes as String: true,
-                                    kSecReturnData as String: true]
-        var keychainData: CFTypeRef?
-        let status = SecItemCopyMatching(keychainQuery as CFDictionary, &keychainData)
-        guard status != errSecItemNotFound else { throw KeychainError.passwordMissMatch }
-        guard status == errSecSuccess else { throw KeychainError.unableToExtractPassword }
-        guard let userCredentials = keychainData as? [String: Any]
-        else {
-            throw KeychainError.unexpectedPasswordData
-        }
-        return userCredentials
-    }
-    
-    private func updatePasswordFromKeychain() throws {
-        let newAttributes: [String: Any] = [
-            kSecAttrAccount as String: username,
-            kSecValueData as String: password
-        ]
-        let status = SecItemUpdate(queryForModifications as CFDictionary, newAttributes as CFDictionary)
-        guard status != errSecItemNotFound else { throw KeychainError.passwordMissMatch}
-        guard status == errSecSuccess else { throw KeychainError.unableToUpdatePassword }
     }
     
     private func deletePasswordFromKeychain() throws {
