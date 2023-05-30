@@ -14,4 +14,5 @@ struct Constants {
                                              UIFont.systemFont(ofSize: 16, weight: .regular)
     static var authentificationMarginBackgroundImageTop: Double = 0.0
     static let homeScreenBackgroundImageMovementConstant: CGFloat = 280
+    static let serverAppName: String = "unsplashAPI.com"
 }

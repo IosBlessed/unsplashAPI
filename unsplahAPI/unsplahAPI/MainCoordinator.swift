@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Security
 
 final class MainCoordinator: NSObject, UINavigationControllerDelegate {
     unowned var navigationController: UINavigationController
