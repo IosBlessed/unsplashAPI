@@ -7,8 +7,11 @@
 
 import UIKit
 
-class LikedViewController: UIViewController {
-
+class LikedViewController: UIViewController, LikedViewControllerProtocol {
+    
+    var viewModel: LikedViewModelProtocol!
+    var coordinator: BrowseCoordinatorProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

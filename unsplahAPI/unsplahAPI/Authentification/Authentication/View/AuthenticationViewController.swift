@@ -165,7 +165,9 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
             animations: animateViewControllerDissapear
         ) { [weak self] _ in
                 guard let self else { return }
-                self.coordinator?.initializeLoginModule()
+            // TODO: Replace test logic to real
+                //self.coordinator?.initializeLoginModule()
+                self.viewModel.authenticate(username: "test", password: "test")
         }
     }
 }

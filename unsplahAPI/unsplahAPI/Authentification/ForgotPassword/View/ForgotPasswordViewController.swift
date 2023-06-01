@@ -113,7 +113,7 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
-    //MARK: - Actions
+    // MARK: - Actions
     @IBAction func passwordConfirmationButtonTapped(_ sender: Any) {
         // TODO: if user's mail addres is stored in keychain, show alert
         let alert = self.alertMessage(

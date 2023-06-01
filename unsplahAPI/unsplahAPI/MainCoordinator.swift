@@ -8,14 +8,19 @@
 import UIKit
 
 final class MainCoordinator: NSObject, UINavigationControllerDelegate {
-    unowned var navigationController: UINavigationController
+    var navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
     func start() {
-        let coordinator = AuthentificationCoordinator(navigationController: navigationController)
+        let coordinator = AuthentificationCoordinator(navigationController: navigationController, mainCoordinator: self)
         coordinator.initializeAuthorizationProcess()
+    }
+    
+    func startBrowse() {
+        let coordinator = BrowseCoordinator(navigationController: navigationController, mainCoordinator: self)
+        coordinator.initializeBrowseProcess()
     }
 }

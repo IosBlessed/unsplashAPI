@@ -7,7 +7,10 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, SettingsViewControllerProtocol {
+    
+    var viewModel: SettingsViewModelProtocol!
+    var coordinator: BrowseCoordinatorProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()

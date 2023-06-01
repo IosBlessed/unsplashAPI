@@ -5,4 +5,6 @@
 //  Created by Никита Данилович on 25.05.2023.
 //
 
-import Foundation
+protocol LikedViewControllerProtocol: AnyObject {
+    var viewModel: LikedViewModelProtocol! { get set }
+}

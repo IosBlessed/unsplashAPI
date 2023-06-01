@@ -11,6 +11,7 @@ struct ForgotPasswordBuilder {
         let viewController = ForgotPasswordViewController()
         let viewModel = ForgotPasswordViewModel()
         viewController.viewModel = viewModel
+        viewController.modalPresentationStyle = .fullScreen
         return viewController
     }
 }
