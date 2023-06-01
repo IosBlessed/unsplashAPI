@@ -91,7 +91,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
         addTargetsToTextFields()
         setupNavigationBar()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardCenter?.initializeHideKeyboardGestureRecognizer(selector: #selector(hideKeyboard))
@@ -100,7 +100,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
             onHide: #selector(keyboardWillHide)
         )
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let arrayForAnimatedItems = [
@@ -120,12 +120,12 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
             )
         }
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupConstraints()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         keyboardCenter?.removeObserver()
         self.hideKeyboard()
@@ -139,7 +139,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
             let loginField = loginTextFieldsView.loginTextField
             loginTextFieldsView.setupTextFieldBasedOnInput(textField: loginField!, isCorrect: isCorrect)
         }
-        
+
         viewModel.passswordIsCorrect.bind { [weak self] isCorrect in
             guard let self else { return }
             let passwordField = loginTextFieldsView.passwordTextField
@@ -150,14 +150,14 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
             logInButton.shouldButtonBeEnabled(isEnabled: isEnabled)
         }
     }
-    
+
     private func setupNavigationBar() {
         let backButtonItem = UIBarButtonItem()
         backButtonItem.title = "Log In"
         backButtonItem.tintColor = .black
         navigationItem.backBarButtonItem = backButtonItem
     }
-    
+
     private func animateAppearanceElements(element object: UIView, transition onTime: Double, delay fromTime: Double) {
         UIView.animate(withDuration: onTime, delay: fromTime) { [weak self] in
             guard let self else { return }
@@ -165,7 +165,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
             self.delayOnAnimation += onTime
         }
     }
- 
+
     private func setupConstraints() {
         loginView.addSubview(loginTextFieldsView)
         backgroundImage.layer.sublayers?.first?.frame = view.bounds
@@ -173,7 +173,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         forgotPassword.translatesAutoresizingMaskIntoConstraints = false
         createAccount.translatesAutoresizingMaskIntoConstraints = false
-        
+
         loginTitleLabel.topAnchor.constraint(
             equalTo: loginView.topAnchor
         ).isActive = true
@@ -187,7 +187,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
         loginTitleLabel.widthAnchor.constraint(
             equalToConstant: 100
         ).isActive = true
-        
+
         loginTextFieldsView.topAnchor.constraint(
             equalTo: loginTitleLabel.bottomAnchor,
             constant: 35
@@ -202,7 +202,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
         loginTextFieldsView.heightAnchor.constraint(
             equalToConstant: 100
         ).isActive = true
-        
+
         logInButton.topAnchor.constraint(
             equalTo: loginTextFieldsView.bottomAnchor,
             constant: 20
@@ -218,7 +218,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
         logInButton.heightAnchor.constraint(
             equalToConstant: 40
         ).isActive = true
-        
+
         forgotPassword.topAnchor.constraint(
             equalTo: logInButton.bottomAnchor,
             constant: 30
@@ -234,7 +234,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
         forgotPassword.heightAnchor.constraint(
             equalToConstant: 14
         ).isActive = true
-        
+
         createAccount.topAnchor.constraint(
             equalTo: forgotPassword.bottomAnchor,
             constant: 20
@@ -251,42 +251,42 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
             equalToConstant: 16
         ).isActive = true
     }
-    
+
     private func addTargetsToTextFields() {
         for field in loginTextFieldsView.textFieldsStackVIew.arrangedSubviews as? [UITextField] ?? [] {
             field.addTarget(self, action: #selector(textFieldChangesText), for: .editingChanged)
         }
     }
     // MARK: - Selectors
-    @objc func keyboardWillShow(_ notification: NSNotification) {
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
         UIView.animate(withDuration: 2.0) { [weak self] in
             self?.loginViewTopConstraint.constant = 35
             self?.view.layoutIfNeeded()
         }
     }
 
-    @objc func keyboardWillHide(_ notification: NSNotification) {
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
         UIView.animate(withDuration: 2.0) { [weak self] in
             self?.loginViewTopConstraint.constant = Constants.authentificationMarginBackgroundImageTop
             self?.view.layoutIfNeeded()
         }
     }
-    
-    @objc func hideKeyboard() {
+
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
-    
-    @objc func textFieldChangesText() {
+
+    @objc private func textFieldChangesText() {
         let email = loginTextFieldsView.loginTextField.text
         let password = loginTextFieldsView.passwordTextField.text
         viewModel?.processTextFields(email: email, password: password)
     }
-    
+
     // MARK: - Actions
     @IBAction func forgotPasswordAction(_ sender: Any) {
         coordinator?.initializeForgotPasswordModule()
     }
-    
+
     @IBAction func createAccountAction(_ sender: Any) {
         coordinator?.initializeCreateAccountModule(isFirstResponder: true)
     }

@@ -49,7 +49,7 @@ final class LoginTextFields: UIView {
         self.addSubview(viewFromNib)
         self.addSubview(textFieldsStackVIew)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -59,7 +59,7 @@ final class LoginTextFields: UIView {
         let nibView = Bundle.main.loadNibNamed(nibName, owner: self, options: nil)?.first as? UIView
         return nibView
     }
-    
+
     func setupTextFieldBasedOnInput(textField field: UITextField, isCorrect: Bool) {
         if !isCorrect {
             field.textColor = .red

@@ -15,7 +15,7 @@ final class LoginViewModel: LoginViewModelProtocol {
     // MARK: - Behaviour
     func processTextFields(email: String?, password: String?) {
         guard let email, let password else { return }
-        
+
         if email.count > 6 || email.count == 0 {
             emailIsCorrect.observedObject = true
         } else {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23FF16047CE680B2265C6254 /* Pods_unsplahAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E224977ACF73B815489334 /* Pods_unsplahAPI.framework */; };
 		3721B5032A229FF1009E408A /* CreateAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3721B5022A229FF1009E408A /* CreateAccountViewController.xib */; };
 		3721B5062A24022A009E408A /* KeyboardCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B5052A24022A009E408A /* KeyboardCenter.swift */; };
 		3721B50A2A24131F009E408A /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3721B5092A24131F009E408A /* ForgotPasswordViewController.xib */; };
@@ -15,6 +16,8 @@
 		3721B5112A253A19009E408A /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B5102A253A19009E408A /* Extension+UITextField.swift */; };
 		3721B5132A253A6C009E408A /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B5122A253A6C009E408A /* Extension+UIViewController.swift */; };
 		3721B5162A25DCA6009E408A /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B5152A25DCA6009E408A /* Keychain.swift */; };
+		3721B51C2A2775E3009E408A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B51A2A2775E3009E408A /* ImageCollectionViewCell.swift */; };
+		3721B51D2A2775E3009E408A /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3721B51B2A2775E3009E408A /* ImageCollectionViewCell.xib */; };
 		37876F0E2A1F589300EC54CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F0D2A1F589300EC54CF /* AppDelegate.swift */; };
 		37876F102A1F589300EC54CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F0F2A1F589300EC54CF /* SceneDelegate.swift */; };
 		37876F182A1F589300EC54CF /* unsplahAPI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37876F162A1F589300EC54CF /* unsplahAPI.xcdatamodeld */; };
@@ -89,11 +92,10 @@
 		3787703A2A1F77A900EC54CF /* AuthentificationCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770392A1F77A900EC54CF /* AuthentificationCoordinatorProtocol.swift */; };
 		3787703E2A1F782000EC54CF /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787703D2A1F782000EC54CF /* AppService.swift */; };
 		378770402A1F783200EC54CF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787703F2A1F783200EC54CF /* AuthenticationService.swift */; };
-		378770422A1F784100EC54CF /* UnsplashStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770412A1F784100EC54CF /* UnsplashStorageService.swift */; };
-		378770442A1F785800EC54CF /* UnsplashAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770432A1F785800EC54CF /* UnsplashAPIService.swift */; };
-		378770492A1F789600EC54CF /* AppServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770452A1F789600EC54CF /* AppServiceProtocol.swift */; };
-		3787704A2A1F789600EC54CF /* UnsplashAPIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770462A1F789600EC54CF /* UnsplashAPIServiceProtocol.swift */; };
-		3787704B2A1F789600EC54CF /* UnsplashStorageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770472A1F789600EC54CF /* UnsplashStorageServiceProtocol.swift */; };
+		378770422A1F784100EC54CF /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770412A1F784100EC54CF /* CoreDataService.swift */; };
+		378770442A1F785800EC54CF /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770432A1F785800EC54CF /* NetworkService.swift */; };
+		3787704A2A1F789600EC54CF /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770462A1F789600EC54CF /* NetworkServiceProtocol.swift */; };
+		3787704B2A1F789600EC54CF /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770472A1F789600EC54CF /* CoreDataServiceProtocol.swift */; };
 		3787704C2A1F789600EC54CF /* AuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770482A1F789600EC54CF /* AuthenticationServiceProtocol.swift */; };
 		378770572A1F8FF000EC54CF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378770552A1F8FF000EC54CF /* AuthenticationViewController.swift */; };
 		378770632A1FB4C100EC54CF /* homeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 378770622A1FB4C100EC54CF /* homeScreen.png */; };
@@ -109,6 +111,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B8C5B85F79DEFF8CF3255EE /* Pods-unsplahAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsplahAPI.debug.xcconfig"; path = "Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		3721B5022A229FF1009E408A /* CreateAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountViewController.xib; sourceTree = "<group>"; };
 		3721B5052A24022A009E408A /* KeyboardCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCenter.swift; sourceTree = "<group>"; };
 		3721B5092A24131F009E408A /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
@@ -117,6 +120,8 @@
 		3721B5102A253A19009E408A /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		3721B5122A253A6C009E408A /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		3721B5152A25DCA6009E408A /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		3721B51A2A2775E3009E408A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		3721B51B2A2775E3009E408A /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		37876F0A2A1F589300EC54CF /* unsplahAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = unsplahAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37876F0D2A1F589300EC54CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37876F0F2A1F589300EC54CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,11 +198,10 @@
 		378770392A1F77A900EC54CF /* AuthentificationCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		3787703D2A1F782000EC54CF /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		3787703F2A1F783200EC54CF /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
-		378770412A1F784100EC54CF /* UnsplashStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashStorageService.swift; sourceTree = "<group>"; };
-		378770432A1F785800EC54CF /* UnsplashAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPIService.swift; sourceTree = "<group>"; };
-		378770452A1F789600EC54CF /* AppServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServiceProtocol.swift; sourceTree = "<group>"; };
-		378770462A1F789600EC54CF /* UnsplashAPIServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashAPIServiceProtocol.swift; sourceTree = "<group>"; };
-		378770472A1F789600EC54CF /* UnsplashStorageServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashStorageServiceProtocol.swift; sourceTree = "<group>"; };
+		378770412A1F784100EC54CF /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		378770432A1F785800EC54CF /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		378770462A1F789600EC54CF /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		378770472A1F789600EC54CF /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
 		378770482A1F789600EC54CF /* AuthenticationServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceProtocol.swift; sourceTree = "<group>"; };
 		378770552A1F8FF000EC54CF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		378770622A1FB4C100EC54CF /* homeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeScreen.png; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 		378770732A200D0D00EC54CF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		3787707C2A20954200EC54CF /* LoginTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFields.swift; sourceTree = "<group>"; };
 		378770852A21169800EC54CF /* LoginTextFields.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTextFields.xib; sourceTree = "<group>"; };
+		B20B876A41304DB054691A2A /* Pods-unsplahAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsplahAPI.release.xcconfig"; path = "Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI.release.xcconfig"; sourceTree = "<group>"; };
+		F7E224977ACF73B815489334 /* Pods_unsplahAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_unsplahAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,12 +223,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23FF16047CE680B2265C6254 /* Pods_unsplahAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1742FBFC5AA7FB4595687AE2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1B8C5B85F79DEFF8CF3255EE /* Pods-unsplahAPI.debug.xcconfig */,
+				B20B876A41304DB054691A2A /* Pods-unsplahAPI.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3721B5042A240215009E408A /* NotificationCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +270,8 @@
 			children = (
 				37876F0C2A1F589300EC54CF /* unsplahAPI */,
 				37876F0B2A1F589300EC54CF /* Products */,
+				1742FBFC5AA7FB4595687AE2 /* Pods */,
+				9416A65D0D4DF1D140968595 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -314,9 +332,9 @@
 		37876F282A1F5AEC00EC54CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				37876F782A1F709200EC54CF /* AppService */,
 				3721B5142A25DC95009E408A /* Keychain */,
 				3787703C2A1F781300EC54CF /* Protocols */,
-				37876F782A1F709200EC54CF /* AppService */,
 				37876F7B2A1F70C500EC54CF /* AuthenticationService */,
 				37876F7A2A1F70B400EC54CF /* UnsplashStorageService */,
 				37876F792A1F70A400EC54CF /* UnsplashAPIService */,
@@ -602,7 +620,7 @@
 		37876F792A1F70A400EC54CF /* UnsplashAPIService */ = {
 			isa = PBXGroup;
 			children = (
-				378770432A1F785800EC54CF /* UnsplashAPIService.swift */,
+				378770432A1F785800EC54CF /* NetworkService.swift */,
 			);
 			path = UnsplashAPIService;
 			sourceTree = "<group>";
@@ -610,7 +628,7 @@
 		37876F7A2A1F70B400EC54CF /* UnsplashStorageService */ = {
 			isa = PBXGroup;
 			children = (
-				378770412A1F784100EC54CF /* UnsplashStorageService.swift */,
+				378770412A1F784100EC54CF /* CoreDataService.swift */,
 			);
 			path = UnsplashStorageService;
 			sourceTree = "<group>";
@@ -855,6 +873,8 @@
 			children = (
 				3787701E2A1F76D500EC54CF /* BrowseViewController.swift */,
 				3787701F2A1F76D500EC54CF /* BrowseViewController.xib */,
+				3721B51A2A2775E3009E408A /* ImageCollectionViewCell.swift */,
+				3721B51B2A2775E3009E408A /* ImageCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -912,10 +932,9 @@
 		3787703C2A1F781300EC54CF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				378770452A1F789600EC54CF /* AppServiceProtocol.swift */,
 				378770482A1F789600EC54CF /* AuthenticationServiceProtocol.swift */,
-				378770462A1F789600EC54CF /* UnsplashAPIServiceProtocol.swift */,
-				378770472A1F789600EC54CF /* UnsplashStorageServiceProtocol.swift */,
+				378770462A1F789600EC54CF /* NetworkServiceProtocol.swift */,
+				378770472A1F789600EC54CF /* CoreDataServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -946,6 +965,14 @@
 			path = ReusableViews;
 			sourceTree = "<group>";
 		};
+		9416A65D0D4DF1D140968595 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7E224977ACF73B815489334 /* Pods_unsplahAPI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -953,10 +980,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37876F212A1F589400EC54CF /* Build configuration list for PBXNativeTarget "unsplahAPI" */;
 			buildPhases = (
+				6FB91EDA8C57CD93DBA33B78 /* [CP] Check Pods Manifest.lock */,
 				37876F062A1F589300EC54CF /* Sources */,
 				37876F072A1F589300EC54CF /* Frameworks */,
 				37876F082A1F589300EC54CF /* Resources */,
 				3787706F2A1FE39500EC54CF /* ShellScript */,
+				FCAF761DD7BD7DFB2E42CA65 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1011,6 +1040,7 @@
 				3787706E2A1FDE6900EC54CF /* SF-Pro-Display-Bold.otf in Resources */,
 				37876FC22A1F746200EC54CF /* SettingsViewController.xib in Resources */,
 				378770632A1FB4C100EC54CF /* homeScreen.png in Resources */,
+				3721B51D2A2775E3009E408A /* ImageCollectionViewCell.xib in Resources */,
 				378770382A1F775E00EC54CF /* ChangePasswordViewController.xib in Resources */,
 				3721B50A2A24131F009E408A /* ForgotPasswordViewController.xib in Resources */,
 				37876F1D2A1F589400EC54CF /* LaunchScreen.storyboard in Resources */,
@@ -1044,6 +1074,45 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		6FB91EDA8C57CD93DBA33B78 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-unsplahAPI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCAF761DD7BD7DFB2E42CA65 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1054,7 +1123,7 @@
 				37876F502A1F6E8500EC54CF /* BrowseCoordinator.swift in Sources */,
 				37876F182A1F589300EC54CF /* unsplahAPI.xcdatamodeld in Sources */,
 				378770032A1F760800EC54CF /* LikedViewModelProtocol.swift in Sources */,
-				378770442A1F785800EC54CF /* UnsplashAPIService.swift in Sources */,
+				378770442A1F785800EC54CF /* NetworkService.swift in Sources */,
 				3787702E2A1F773000EC54CF /* ChangePasswordBuilder.swift in Sources */,
 				3787702F2A1F773000EC54CF /* ChangePasswordModel.swift in Sources */,
 				3721B5162A25DCA6009E408A /* Keychain.swift in Sources */,
@@ -1068,7 +1137,7 @@
 				3721B50F2A2539FB009E408A /* Extension+UIButton.swift in Sources */,
 				37876F9D2A1F72A100EC54CF /* CreateAccountViewControllerProtocol.swift in Sources */,
 				37876F842A1F71C600EC54CF /* LoginModel.swift in Sources */,
-				3787704B2A1F789600EC54CF /* UnsplashStorageServiceProtocol.swift in Sources */,
+				3787704B2A1F789600EC54CF /* CoreDataServiceProtocol.swift in Sources */,
 				37876FBC2A1F740200EC54CF /* SettingsViewControllerProtocol.swift in Sources */,
 				378770342A1F773000EC54CF /* ChangePasswordViewControllerProtocol.swift in Sources */,
 				378770572A1F8FF000EC54CF /* AuthenticationViewController.swift in Sources */,
@@ -1084,8 +1153,7 @@
 				37876F312A1F5BC900EC54CF /* AuthenticationViewModel.swift in Sources */,
 				37876FD42A1F74D900EC54CF /* RootTabBarBuilder.swift in Sources */,
 				37876FAC2A1F734D00EC54CF /* ForgotPasswordViewControllerProtocol.swift in Sources */,
-				378770422A1F784100EC54CF /* UnsplashStorageService.swift in Sources */,
-				378770492A1F789600EC54CF /* AppServiceProtocol.swift in Sources */,
+				378770422A1F784100EC54CF /* CoreDataService.swift in Sources */,
 				37876FEC2A1F758400EC54CF /* PictureDetailsViewModel.swift in Sources */,
 				37876F902A1F724500EC54CF /* CreateAccountBuilder.swift in Sources */,
 				3721B50C2A24D1D9009E408A /* ObservableModel.swift in Sources */,
@@ -1102,6 +1170,7 @@
 				37876F9F2A1F72CC00EC54CF /* ForgotPasswordBuilder.swift in Sources */,
 				37876F9B2A1F728D00EC54CF /* CreateAccountViewModelProtocol.swift in Sources */,
 				37876FD52A1F74D900EC54CF /* RootTabBarModel.swift in Sources */,
+				3721B51C2A2775E3009E408A /* ImageCollectionViewCell.swift in Sources */,
 				37876FF22A1F75AF00EC54CF /* PictureDetailsViewController.swift in Sources */,
 				378770322A1F773000EC54CF /* ChangePasswordViewModel.swift in Sources */,
 				3721B5062A24022A009E408A /* KeyboardCenter.swift in Sources */,
@@ -1115,7 +1184,7 @@
 				37876F3D2A1F5CB300EC54CF /* AuthenticationModel.swift in Sources */,
 				378770692A1FC33E00EC54CF /* Constants.swift in Sources */,
 				37876F8E2A1F722800EC54CF /* LoginViewControllerProtocol.swift in Sources */,
-				3787704A2A1F789600EC54CF /* UnsplashAPIServiceProtocol.swift in Sources */,
+				3787704A2A1F789600EC54CF /* NetworkServiceProtocol.swift in Sources */,
 				37876FEF2A1F758400EC54CF /* PictureDetailsBuilder.swift in Sources */,
 				37876FBE2A1F740200EC54CF /* SettingsViewModel.swift in Sources */,
 				378770182A1F76A200EC54CF /* BrowseBuilder.swift in Sources */,
@@ -1268,6 +1337,7 @@
 		};
 		37876F222A1F589400EC54CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B8C5B85F79DEFF8CF3255EE /* Pods-unsplahAPI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1295,6 +1365,7 @@
 		};
 		37876F232A1F589400EC54CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B20B876A41304DB054691A2A /* Pods-unsplahAPI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

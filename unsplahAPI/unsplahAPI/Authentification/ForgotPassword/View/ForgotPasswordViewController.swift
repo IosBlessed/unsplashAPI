@@ -38,7 +38,7 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
         initializeKeyboardCenter()
         setupBindings()
     }
-   
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         forgotPasswordTextFields.loginTextField.addTarget(
@@ -47,7 +47,7 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
             for: .allEditingEvents
         )
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupConstraints()
@@ -64,17 +64,17 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
             self.confirmButton.shouldButtonBeEnabled(isEnabled: isEnabled)
         }
     }
-    
+
     private func initializeKeyboardCenter() {
         keyboardCenter = KeyboardNotificationCenter(for: self, targetView: self.view)
         keyboardCenter?.initializeHideKeyboardGestureRecognizer(selector: #selector(hideKeyboard))
     }
-    
+
     private func setupConstraints() {
         forgotPasswordTextFields.translatesAutoresizingMaskIntoConstraints = false
         confirmButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(forgotPasswordTextFields)
-        
+
         forgotPasswordTextFields.topAnchor.constraint(
             equalTo: forgotPasswordSubtitle.bottomAnchor,
             constant: 20
@@ -89,7 +89,7 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
         forgotPasswordTextFields.heightAnchor.constraint(
             equalToConstant: 40
         ).isActive = true
-        
+
         confirmButton.topAnchor.constraint(
             equalTo: forgotPasswordTextFields.bottomAnchor,
             constant: 20
@@ -105,12 +105,12 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
         ).isActive = true
     }
     // MARK: - Selectors
-    @objc func processInput() {
+    @objc private func processInput() {
         let email = forgotPasswordTextFields.loginTextField.text
         viewModel.processForgotPasswordTextField(email: email)
     }
-    
-    @objc func hideKeyboard() {
+
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
     // MARK: - Actions

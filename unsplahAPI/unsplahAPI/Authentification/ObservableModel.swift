@@ -32,7 +32,7 @@ final class Observable <T> {
         triggerChanges = completion
     }
     // MARK: - Selectors
-    @objc func pingListener() {
+    @objc private func pingListener() {
         triggerChanges?(observedObject)
     }
 }

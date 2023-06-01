@@ -41,7 +41,7 @@ final class CreateAccountViewModel: CreateAccountViewModelProtocol {
         let shouldHideButton = passwordsAreSame && emailIsCorrect.observedObject && !fieldsAreEmpty
         shouldEnableButtonCreateAccount.observedObject = shouldHideButton
     }
-    
+
     func createUser() {
     }
 }

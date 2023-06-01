@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="3gg-98-nlN" customClass="ImageCollectionViewCell" customModule="unsplahAPI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="196" height="256"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Jsf-e6-nLL">
+                <rect key="frame" x="0.0" y="0.0" width="196" height="256"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7fd-fx-Ii7">
+                        <rect key="frame" x="0.0" y="0.0" width="196" height="256"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="7fd-fx-Ii7" secondAttribute="bottom" id="1CB-Nt-0Sr"/>
+                    <constraint firstAttribute="trailing" secondItem="7fd-fx-Ii7" secondAttribute="trailing" id="Zrl-8M-cC2"/>
+                    <constraint firstItem="7fd-fx-Ii7" firstAttribute="leading" secondItem="Jsf-e6-nLL" secondAttribute="leading" id="dR8-n1-Nl1"/>
+                    <constraint firstItem="7fd-fx-Ii7" firstAttribute="top" secondItem="Jsf-e6-nLL" secondAttribute="top" id="e0U-5h-AoG"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="169" height="219"/>
+            <connections>
+                <outlet property="unsplashImageView" destination="7fd-fx-Ii7" id="FhK-E2-ruT"/>
+            </connections>
+            <point key="canvasLocation" x="295.41984732824426" y="44.014084507042256"/>
+        </collectionViewCell>
+    </objects>
+</document>

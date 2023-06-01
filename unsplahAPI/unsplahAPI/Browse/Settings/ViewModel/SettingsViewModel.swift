@@ -6,5 +6,5 @@
 //
 
 final class SettingsViewModel: SettingsViewModelProtocol {
-    
+
 }

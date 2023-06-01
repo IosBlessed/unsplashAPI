@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIButton {
-    
+
     func customiseMainActorButton(
         title buttonTitle: String,
         shadow setShadow: Bool,
@@ -38,7 +38,7 @@ extension UIButton {
             button.layer.opacity = 0.0
         }
     }
-    
+
     func shouldButtonBeEnabled(isEnabled: Bool) {
         guard self.layer.opacity != 0 else { return }
         if !isEnabled {
@@ -49,7 +49,7 @@ extension UIButton {
             self.isEnabled = isEnabled
         }
     }
-    
+
     func customiseFootnoteButton(
         title titleText: String,
         fontColor foregroundColor: UIColor,

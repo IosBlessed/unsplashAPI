@@ -40,7 +40,7 @@ class RootTabBarViewController: UITabBarController, RootTabBarControllerProtocol
         ]
         viewControllers = navigationControllers
     }
-    
+
     private func includeViewControllerToNavigation(
         for rootViewController: UIViewController,
         title: String,

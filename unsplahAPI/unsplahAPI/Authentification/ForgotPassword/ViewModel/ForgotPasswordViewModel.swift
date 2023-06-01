@@ -6,10 +6,10 @@
 //
 
 final class ForgotPasswordViewModel: ForgotPasswordViewModelProtocol {
-    
+
     var emailIsCorrect: Observable<Bool> = Observable(true)
     var showPasswordIsActive: Observable<Bool> = Observable(false)
-    
+
     func processForgotPasswordTextField( email: String?) {
         guard let email else { return }
         if (email.count >= 6 && email.contains("@")) || email.count == 0 {
