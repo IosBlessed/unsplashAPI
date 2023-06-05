@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct PictureDetailsBuilder {
+    static func build() -> PictureDetailsViewControllerProtocol {
+        let viewController = PictureDetailsViewController()
+        let viewModel = PictureDetailsViewModel()
+        viewController.viewModel = viewModel
+        return viewController
+    }
+}

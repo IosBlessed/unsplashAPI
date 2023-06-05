@@ -25,17 +25,20 @@ struct SizesForCell {
         self.portraitSize = portraitSize
     }
 }
-// swiftlint:disable all
+
 class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
     @IBOutlet private unowned var browseView: UIView!
     @IBOutlet private weak var imageCollectionView: UICollectionView!
     var viewModel: BrowseViewModelProtocol!
+    unowned var coordinator: BrowseCoordinatorProtocol!
     private var navbarSearchController: UISearchController!
     private lazy var imagesDataSource: UICollectionViewDiffableDataSource = {
         let dataSource = UICollectionViewDiffableDataSource<ImagesSection, UnsplashImage>(
             collectionView: imageCollectionView
         ) { (collectionView, indexPath, imageObject) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath
+            ) as? ImageCollectionViewCell
             cell?.initialCellSetup(imageObject: imageObject)
             return cell
         }
@@ -83,8 +86,12 @@ class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
         }
         viewModel.occuredError.bind { [weak self] error in
             guard let self else { return }
-            
-            let alertController = alertMessage(title: "WARNING!!!", description: error.rawValue, buttonTitle: "OK", handler: {_ in})
+            let alertController = alertMessage(
+                title: "WARNING!!!",
+                description: error.rawValue,
+                buttonTitle: "OK",
+                handler: {_ in}
+            )
             self.present(alertController, animated: true)
         }
     }
@@ -103,11 +110,17 @@ class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
         navbarSearchController = UISearchController()
         let barButtonitemAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         UIBarButtonItem.appearance().setTitleTextAttributes(barButtonitemAttributes, for: .normal)
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationItem.backBarButtonItem?.tintColor = .black
         navbarSearchController.searchBar.placeholder = "Search"
         navigationItem.searchController = navbarSearchController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.searchBar.setShowsScope(true, animated: true)
-        navigationItem.searchController?.searchBar.searchTextField.addTarget(self, action: #selector(searchShouldBegin), for: .primaryActionTriggered)
+        navigationItem.searchController?.searchBar.searchTextField.addTarget(
+            self,
+            action: #selector(searchShouldBegin),
+            for: .primaryActionTriggered
+        )
         setupNavigationBarRightItems()
     }
     
@@ -141,8 +154,8 @@ class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
             ImageCollectionViewCell.nib,
             forCellWithReuseIdentifier: ImageCollectionViewCell.identifier
         )
-        imageCollectionView.backgroundColor = .clear
         imageCollectionView.delegate = self
+        imageCollectionView.backgroundColor = .clear
         collectionViewCellFlowLayout = UICollectionViewFlowLayout()
         collectionViewCellFlowLayout.itemSize = sizesForCell.gridSize
         collectionViewCellFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
@@ -153,10 +166,8 @@ class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
     
     private func updateCollectionViewDataSource() {
         var imagesSnapshot = NSDiffableDataSourceSnapshot<ImagesSection, UnsplashImage>()
-        // TODO: append items to imagesSnapshot
         imagesSnapshot.appendSections(ImagesSection.allCases)
         imagesSnapshot.appendItems(extractedImagesFromUnsplash)
-
         imagesDataSource.apply(imagesSnapshot, animatingDifferences: true)
     }
 }
@@ -169,39 +180,11 @@ extension BrowseViewController: UICollectionViewDelegate, UICollectionViewDelega
             viewModel.requestImagesExtraction()
         }
     }
-}
-
-extension UIBarButtonItem {
-    static func createRightBarButton(
-        target: Any?,
-        action: Selector,
-        imageSystemName: String
-    ) -> UIBarButtonItem {
-        let button = UIButton(frame: .zero)
-        button.setBackgroundImage(UIImage(systemName: imageSystemName), for: .normal)
-        button.tintColor = .black
-        button.addTarget(target, action: action, for: .touchUpInside)
-        
-        let barButtonItem = UIBarButtonItem(customView: button)
-        barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = true
-        barButtonItem.customView?.frame = CGRect(x: 0, y: 0, width: 35, height: 30)
-        
-        return barButtonItem
-    }
-}
-
-extension UIViewController {
-    func generateAlertViewController(
-        title: String,
-        message: String,
-        buttonOKTitle: String,
-        actionButtonHandler: @escaping (UIAlertAction) -> Void
-    ) -> UIAlertController {
-        let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertButtonAction = UIAlertAction(title: buttonOKTitle, style: .default, handler: actionButtonHandler)
-        
-        alertViewController.addAction(alertButtonAction)
-        
-        return alertViewController
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let imageObject = extractedImagesFromUnsplash[indexPath.row]
+        self.coordinator.initializePictureDetails(
+            fromNavigationController: self.navigationController,
+            imageObject: imageObject
+        )
     }
 }

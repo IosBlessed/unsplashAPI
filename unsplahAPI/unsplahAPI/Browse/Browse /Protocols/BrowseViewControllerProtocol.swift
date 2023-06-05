@@ -7,4 +7,5 @@
 
 protocol BrowseViewControllerProtocol: AnyObject {
     var viewModel: BrowseViewModelProtocol! { get set }
+    var coordinator: BrowseCoordinatorProtocol! { get set }
 }

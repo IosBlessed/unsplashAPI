@@ -7,9 +7,9 @@
 
 struct AuthenticationBuilder {
     static func build() -> AuthenticationViewControllerProtocol {
-        let view = AuthenticationViewController()
+        let viewController = AuthenticationViewController()
         let viewModel = AuthenticationViewModel()
-        view.viewModel = viewModel
-        return view
+        viewController.viewModel = viewModel
+        return viewController
     }
 }

@@ -6,6 +6,6 @@
 //
 
 protocol ForgotPasswordViewControllerProtocol: AnyObject {
-    var viewModel: ForgotPasswordViewModelProtocol! { get }
+    var viewModel: ForgotPasswordViewModelProtocol! { get set }
     var coordinator: AuthentificationCoordinatorProtocol! { get set }
 }

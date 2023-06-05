@@ -15,7 +15,11 @@ class UnsplashAPI {
     // MARK: - Network
     private let networkService: NetworkServiceProtocol = NetworkService()
     
-    func askUnsplashAPIToExtractImages(page: Int, imageCollection: String?, imagesReceiverHandler: @escaping(Result<[UnsplashImage], HTTPResponseCode>) -> Void) {
+    func askUnsplashAPIToExtractImages(
+        page: Int,
+        imageCollection: String?,
+        imagesReceiverHandler: @escaping(Result<[UnsplashImage], HTTPResponseCode>
+        ) -> Void) {
         let isTargetQuery = imageCollection != nil
         let urlPath = self.linkBuilder(isTargetQuery: isTargetQuery, page: page, imageCollection: imageCollection)
         networkService.startSessionForExtractingImages(urlPath: urlPath) { queryResponse in
@@ -34,7 +38,10 @@ class UnsplashAPI {
         }
     }
     
-    private func decodeJsonObjectToArrayOfImages(data: Data, isTargetQuery: Bool) -> Result <[UnsplashImage], HTTPResponseCode> {
+    private func decodeJsonObjectToArrayOfImages(
+        data: Data,
+        isTargetQuery: Bool
+    ) -> Result <[UnsplashImage], HTTPResponseCode> {
         do {
             if isTargetQuery {
                 let imagesObject = try JSONDecoder().decode(UnsplashSectionedImages.self, from: data)

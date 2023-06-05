@@ -30,7 +30,6 @@ final class BrowseViewModel: BrowseViewModelProtocol {
     }
     
     func requestImagesExtraction() {
-        // API query for image extraction
         UnsplashAPI.shared.askUnsplashAPIToExtractImages(page: page, imageCollection: imageCollection) { [weak self] queryResult in
             guard let self else { return }
             switch queryResult {
@@ -50,11 +49,9 @@ final class BrowseViewModel: BrowseViewModelProtocol {
 
     
     func userSearchingImages(by imageCollection: String) {
-        // TODO: Check if the new category differs from the old one
         if self.imageCollection == imageCollection {
             self.requestImagesExtraction()
         } else {
-            // Nulling items
             self.imageCollection = imageCollection.trimmingCharacters(in: .whitespaces) == "" ? nil : imageCollection
             categoryArray = []
             page = 1

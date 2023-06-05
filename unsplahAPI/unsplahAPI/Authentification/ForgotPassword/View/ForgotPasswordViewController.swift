@@ -18,6 +18,7 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
                 title: "Confirm",
                 shadow: true
             )
+            confirmButton.shouldButtonBeEnabled(isEnabled: false)
         }
     }
     // MARK: - Properties

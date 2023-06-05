@@ -6,5 +6,6 @@ target 'unsplahAPI' do
   use_frameworks!
 
   pod 'SDWebImage', '~> 5.0'
+  pod 'Swinject'
 
 end

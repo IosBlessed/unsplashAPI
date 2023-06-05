@@ -9,10 +9,10 @@ import UIKit
 
 final class BrowseCoordinator: BrowseCoordinatorProtocol {
 
-    unowned var navigationController: UINavigationController
-    unowned var mainCoordinator: MainCoordinator
+    var navigationController: UINavigationController
+    unowned var mainCoordinator: MainCoordinatorProtocol
 
-    init(navigationController: UINavigationController, mainCoordinator: MainCoordinator) {
+    init(navigationController: UINavigationController, mainCoordinator: MainCoordinatorProtocol) {
         self.navigationController = navigationController
         self.mainCoordinator = mainCoordinator
     }
@@ -21,7 +21,15 @@ final class BrowseCoordinator: BrowseCoordinatorProtocol {
         let tabBarViewController = RootTabBarBuilder.build() as? RootTabBarViewController
         navigationController.present(tabBarViewController!, animated: false)
     }
-
-    func userdLogOut() {
+    
+    func initializePictureDetails(
+        fromNavigationController: UINavigationController?,
+        imageObject: UnsplashImage
+    ) {
+        let pictureDetailsVC = PictureDetailsBuilder.build() as? PictureDetailsViewController
+        pictureDetailsVC?.initializeImageSetup(image: imageObject)
+        fromNavigationController?.pushViewController(pictureDetailsVC!, animated: true)
     }
+    
+    func userdLogOut() {}
 }

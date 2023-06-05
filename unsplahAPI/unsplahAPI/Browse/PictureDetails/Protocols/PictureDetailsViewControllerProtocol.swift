@@ -6,3 +6,7 @@
 //
 
 import Foundation
+protocol PictureDetailsViewControllerProtocol: AnyObject {
+    var viewModel: PictureDetailsViewModelProtocol! { get set }
+    func initializeImageSetup(image: UnsplashImage)
+}

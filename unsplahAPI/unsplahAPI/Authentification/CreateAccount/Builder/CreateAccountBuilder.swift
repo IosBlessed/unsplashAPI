@@ -9,10 +9,9 @@ import Foundation
 
 struct CreateAccountBuilder {
     static func build() -> CreateAccountViewControllerProtocol {
-        let createAccount = CreateAccountViewController()
+        let viewController = CreateAccountViewController()
         let viewModel = CreateAccountViewModel()
-        createAccount.viewModel = viewModel
-        createAccount.modalPresentationStyle = .fullScreen
-        return createAccount
+        viewController.viewModel = viewModel
+        return viewController
     }
 }
