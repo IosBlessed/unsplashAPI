@@ -30,7 +30,7 @@ class RootTabBarViewController: UITabBarController, RootTabBarControllerProtocol
             ),
             includeViewControllerToNavigation(
                 for: likedViewController!,
-                title: "Liked",
+                title: "Likes",
                 image: UIImage(systemName: "heart")!
             ),
             includeViewControllerToNavigation(
