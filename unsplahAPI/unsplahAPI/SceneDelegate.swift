@@ -17,11 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        DependencyManager.shared.assemblyDependencies()
         let window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController()
-        let coordinator = MainCoordinator(navigationController: navigationController)
-        coordinator.start()
-        window.rootViewController = navigationController
+        let container = DependencyManager.shared.appContainer
+        guard let coordinator = container.resolve(MainCoordinatorProtocol.self) else { fatalError("Incorrect resolving of main coordinator") }
+        coordinator.initialStart()
+        window.rootViewController = coordinator.navigationController
         window.makeKeyAndVisible()
         self.window = window
     }

@@ -7,10 +7,9 @@
 
 struct LoginBuilder {
     static func build() -> LoginViewControllerProtocol {
-        let loginVC = LoginViewController()
+        let viewController = LoginViewController()
         let viewModel = LoginViewModel()
-        loginVC.viewModel = viewModel
-        loginVC.modalPresentationStyle = .fullScreen
-        return loginVC
+        viewController.viewModel = viewModel
+        return viewController
     }
 }

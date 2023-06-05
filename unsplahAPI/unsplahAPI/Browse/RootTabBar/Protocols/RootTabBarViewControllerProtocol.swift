@@ -8,5 +8,6 @@
 import Foundation
 
 protocol RootTabBarControllerProtocol: AnyObject {
-
+    var coordinator: BrowseCoordinatorProtocol! { get set }
+    func initializeViewControllers()
 }

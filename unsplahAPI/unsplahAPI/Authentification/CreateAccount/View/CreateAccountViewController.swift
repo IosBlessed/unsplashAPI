@@ -21,6 +21,7 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
                 title: "Create Account",
                 shadow: true
             )
+            createAccountButton.shouldButtonBeEnabled(isEnabled: false)
         }
     }
     @IBOutlet private weak var createAccountTopConstraint: NSLayoutConstraint!

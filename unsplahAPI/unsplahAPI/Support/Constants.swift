@@ -5,6 +5,7 @@
 //  Created by Никита Данилович on 25.05.2023.
 //
 
+import Foundation
 import UIKit
 
 struct Constants {
@@ -15,4 +16,5 @@ struct Constants {
     static var authentificationMarginBackgroundImageTop: Double = 0.0
     static let homeScreenBackgroundImageMovementConstant: CGFloat = 280
     static let serverAppName: String = "unsplashAPI.com"
+    static let likeHeartAnimationSize = (width: 100.0, height: 90.0)
 }

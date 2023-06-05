@@ -7,7 +7,7 @@
 
 import Network
 import UIKit
-// swiftlint:disable all
+
 enum HTTPRequstMethod: String {
     case get = "GET"
     case post = "POST"
@@ -108,4 +108,3 @@ struct UnsplashImageURL: Codable, Hashable {
     let thumb: String
     let small_s3: String
 }
-// swiftlint:enable all

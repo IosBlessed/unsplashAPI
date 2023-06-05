@@ -8,6 +8,7 @@
 import UIKit
 
 class RootTabBarViewController: UITabBarController, RootTabBarControllerProtocol {
+    var coordinator: BrowseCoordinatorProtocol!
     // MARK: - Lifcyle
     override func viewDidLoad() {
         super.viewDidLoad()
