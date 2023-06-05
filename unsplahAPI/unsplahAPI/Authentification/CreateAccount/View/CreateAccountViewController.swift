@@ -51,12 +51,12 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
             onHide: #selector(keyboardWillHide)
         )
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupConstraints()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardCenter?.removeObserver()
@@ -69,7 +69,7 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
         self.constantOfLoginLabelTopConstraint = createAccountTopConstraint.constant
         self.createAccountView.backgroundColor = DesignedSystemColors.primary
     }
-    
+
     private func setupBindings() {
         guard let emailField = createAccountTextFieldsView.loginTextField,
               let passwordField = createAccountTextFieldsView.passwordTextField,
@@ -101,7 +101,7 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
             self.createAccountButton.shouldButtonBeEnabled(isEnabled: isEnabled)
         }
     }
-    
+
     private func setupKeyboardCenter() {
         self.keyboardCenter = KeyboardNotificationCenter(
             for: self,
@@ -111,14 +111,14 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
             selector: #selector(hideKeyboard)
         )
     }
-    
+
     private func setupConstraints() {
         createAccountTextFieldsView.translatesAutoresizingMaskIntoConstraints = false
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
-        
+
         createAccountView.addSubview(createAccountTextFieldsView)
         createAccountView.addSubview(createAccountButton)
-        
+
         createAccountTextFieldsView.topAnchor.constraint(
             equalTo: createAccountLabel.bottomAnchor,
             constant: 20
@@ -133,7 +133,7 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
         createAccountTextFieldsView.heightAnchor.constraint(
             equalToConstant: 180
         ).isActive = true
-        
+
         createAccountButton.topAnchor.constraint(
             equalTo: createAccountTextFieldsView.bottomAnchor,
             constant: 20
@@ -148,21 +148,21 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
             equalToConstant: 48
         ).isActive = true
     }
-    
+
     private func initializeTargetsForTextFields() {
         for field in createAccountTextFieldsView.textFieldsStackVIew.arrangedSubviews as? [UITextField] ?? [] {
             field.addTarget(self, action: #selector(processInput), for: .allEditingEvents)
         }
     }
     // MARK: - Selectors
-    @objc func processInput() {
+    @objc private func processInput() {
         let email = createAccountTextFieldsView.loginTextField.text
         let password = createAccountTextFieldsView.passwordTextField.text
         let confirmedPassword = createAccountTextFieldsView.repeatPasswordTextField.text
         viewModel.processCreationOfUser(email: email, password: password, confirmedPassword: confirmedPassword)
     }
-    
-    @objc func keyboardWillShow(_ notification: NSNotification) {
+
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
         UIView.animate(withDuration: 2.0) { [weak self] in
             guard let self else { return }
             self.createAccountTopConstraint.constant = 35
@@ -170,15 +170,15 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
         }
     }
 
-    @objc func keyboardWillHide(_ notification: NSNotification) {
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
         UIView.animate(withDuration: 2.0) { [weak self] in
             guard let self else { return }
             self.createAccountTopConstraint.constant = self.constantOfLoginLabelTopConstraint
             self.view.layoutIfNeeded()
         }
     }
-    
-    @objc func hideKeyboard() {
+
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 }

@@ -8,11 +8,11 @@
 import UIKit
 
 class KeyboardNotificationCenter: Any {
-    
+
     private unowned var viewController: UIViewController
     private unowned var targetView: UIView
     private var hideKeyboardGesture: UITapGestureRecognizer?
-    
+
     init(
         for viewController: UIViewController,
         targetView: UIView
@@ -39,7 +39,7 @@ class KeyboardNotificationCenter: Any {
             object: nil
         )
     }
-    
+
     func initializeHideKeyboardGestureRecognizer(selector: Selector) {
         hideKeyboardGesture = UITapGestureRecognizer(
             target: viewController,
@@ -47,7 +47,7 @@ class KeyboardNotificationCenter: Any {
         )
         targetView.addGestureRecognizer(hideKeyboardGesture!)
     }
-    
+
     func removeObserver() {
         NotificationCenter.default.removeObserver(
             self,

@@ -90,7 +90,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
             self.unitOpacity = 1.0
         }
     }
-    
+
     // MARK: - Behaviour
     private func setupNavigationBar() {
         let backButton = UIBarButtonItem()
@@ -98,11 +98,11 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
         backButton.tintColor = .black
         navigationItem.backBarButtonItem = backButton
     }
-    
+
     private func constructView() {
         setupConstraints()
     }
-    
+
     private func setupConstraints() {
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         underButtonsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -139,7 +139,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
             equalToConstant: 30
         ).isActive = true
     }
-    
+
     private func animateViewControllerDissapear() {
         let marginFromTop = homeScreenView.bounds.height / 1.7
         Constants.authentificationMarginBackgroundImageTop = view.bounds.height - marginFromTop
@@ -158,7 +158,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
             self.coordinator?.initializeCreateAccountModule(isFirstResponder: false)
         }
     }
-    
+
     @IBAction func logInAction(_ sender: Any) {
         UIView.animate(
             withDuration: 1.0,
@@ -166,7 +166,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
         ) { [weak self] _ in
                 guard let self else { return }
             // TODO: Replace test logic to real
-                //self.coordinator?.initializeLoginModule()
+                // self.coordinator?.initializeLoginModule()
                 self.viewModel.authenticate(username: "test", password: "test")
         }
     }

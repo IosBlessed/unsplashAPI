@@ -59,7 +59,7 @@ class KeychainService {
             handler(.failure(.unableToProcessRequest))
         }
     }
-    
+
     private func savePasswordToKeychain() throws {
         let keychainQuery: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrAccount as String: username,
@@ -84,7 +84,7 @@ class KeychainService {
             handler(.failure(.unableToProcessRequest))
         }
     }
-    
+
     private func getPasswordFromKeychain() throws -> [String: Any]? {
         let keychainQuery: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrServer as String: Constants.serverAppName,
@@ -118,7 +118,7 @@ class KeychainService {
             handler(.failure(.unableToProcessRequest))
         }
     }
-    
+
     private func updatePasswordFromKeychain() throws {
         let newAttributes: [String: Any] = [
             kSecAttrAccount as String: username,
@@ -139,7 +139,7 @@ class KeychainService {
             handler(.failure(.unableToProcessRequest))
         }
     }
-    
+
     private func deletePasswordFromKeychain() throws {
         let status = SecItemDelete(queryForModifications as CFDictionary)
         guard status != errSecItemNotFound else { throw KeychainError.passwordMissMatch}

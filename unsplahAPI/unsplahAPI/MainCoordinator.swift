@@ -18,7 +18,7 @@ final class MainCoordinator: NSObject, UINavigationControllerDelegate {
         let coordinator = AuthentificationCoordinator(navigationController: navigationController, mainCoordinator: self)
         coordinator.initializeAuthorizationProcess()
     }
-    
+
     func startBrowse() {
         let coordinator = BrowseCoordinator(navigationController: navigationController, mainCoordinator: self)
         coordinator.initializeBrowseProcess()

@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController, SettingsViewControllerProtocol {
-    
+
     var viewModel: SettingsViewModelProtocol!
     var coordinator: BrowseCoordinatorProtocol!
 
