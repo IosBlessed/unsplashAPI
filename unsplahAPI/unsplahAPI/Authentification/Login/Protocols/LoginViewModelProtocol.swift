@@ -10,4 +10,5 @@ protocol LoginViewModelProtocol: AnyObject {
     var passswordIsCorrect: Observable<Bool> { get }
     var loginButtonIsActive: Observable<Bool> { get }
     func processTextFields(email: String?, password: String?)
+    func loginButtonPressed(username: String, password: String, completion: @escaping (KeychainError?) -> Void)
 }

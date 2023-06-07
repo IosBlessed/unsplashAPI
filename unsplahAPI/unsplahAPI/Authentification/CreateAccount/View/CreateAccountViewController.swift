@@ -21,7 +21,7 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
                 title: "Create Account",
                 shadow: true
             )
-            createAccountButton.shouldButtonBeEnabled(isEnabled: false)
+            createAccountButton.shouldButtonBeEnabled(isActive: false)
         }
     }
     @IBOutlet private weak var createAccountTopConstraint: NSLayoutConstraint!
@@ -99,7 +99,7 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
         }
         viewModel.shouldEnableButtonCreateAccount.bind { [weak self] isEnabled in
             guard let self else { return }
-            self.createAccountButton.shouldButtonBeEnabled(isEnabled: isEnabled)
+            self.createAccountButton.shouldButtonBeEnabled(isActive: isEnabled)
         }
     }
 
@@ -181,5 +181,16 @@ final class CreateAccountViewController: UIViewController, CreateAccountViewCont
 
     @objc private func hideKeyboard() {
         view.endEditing(true)
+    }
+    
+    @IBAction func createAccountPressed(_ sender: Any) {
+        if createAccountButton.isEnabled {
+            createAccountButton.animateButtonWhenTapping()
+            guard let username = createAccountTextFieldsView.loginTextField.text,
+                  let password = createAccountTextFieldsView.passwordTextField.text
+            else { return }
+            UnsplashAPI.shared.saveUserDetailsToKeychain(username: username, password: password)
+            coordinator.didFinishAuthentification()
+        }
     }
 }

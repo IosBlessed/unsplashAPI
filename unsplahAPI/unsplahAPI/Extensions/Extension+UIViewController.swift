@@ -11,12 +11,18 @@ extension UIViewController {
     func alertMessage(
         title: String,
         description: String,
-        buttonTitle: String,
-        handler: @escaping (UIAlertAction) -> Void
+        buttonDefaultTitle: String,
+        buttonDestructiveTitle: String? = nil,
+        handlerDestructive: @escaping (UIAlertAction) -> Void,
+        handlerDefault: @escaping (UIAlertAction) -> Void
     ) -> UIAlertController {
         let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
-        let actionOk = UIAlertAction(title: buttonTitle, style: .default, handler: handler)
-        alert.addAction(actionOk)
+        let actionDefault = UIAlertAction(title: buttonDefaultTitle, style: .cancel, handler: handlerDefault)
+        alert.addAction(actionDefault)
+        if buttonDestructiveTitle != nil {
+            let actionDestructive = UIAlertAction(title: buttonDestructiveTitle, style: .destructive, handler: handlerDestructive)
+            alert.addAction(actionDestructive)
+        }
         return alert
     }
 }

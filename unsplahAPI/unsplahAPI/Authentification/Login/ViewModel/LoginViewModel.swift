@@ -32,4 +32,15 @@ final class LoginViewModel: LoginViewModelProtocol {
     private func loginButtonShouldBeActive(containtsEmptyFields: Bool) {
         loginButtonIsActive.observedObject = emailIsCorrect.observedObject && passswordIsCorrect.observedObject && !containtsEmptyFields
     }
+    
+    func loginButtonPressed(username: String, password: String, completion: @escaping (KeychainError?) -> Void) {
+        UnsplashAPI.shared.getUserfromKeychain { userDetails in
+            
+            let storedUsername = userDetails[KeychainUserKeys.username.rawValue]
+            let storedPassword = userDetails[KeychainUserKeys.password.rawValue]
+            let loginIsCorrect = storedUsername != "" && storedUsername == username
+            let passwordIsCorrect = storedPassword != "" && storedPassword == password
+            return loginIsCorrect && passwordIsCorrect ? completion(nil) : completion(.unableToExtractPassword)
+        }
+    }
 }

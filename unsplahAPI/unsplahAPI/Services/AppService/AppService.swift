@@ -97,6 +97,46 @@ class UnsplashAPI {
     func getWholeLikedImages(completion: @escaping ([LikedImage]?) -> Void) {
         return completion(coreDataService.getLikedImages())
     }
+    
+    func deletePersistentDataFromMemory() {
+        coreDataService.resetDataBase()
+    }
     // MARK: - Keycahin
-    // CRUD Keychain 
+    // CRUD Keychain
+    
+    func getUserfromKeychain(completion: @escaping(PasswordDetails) -> Void) {
+        KeychainService.shared.getPassword { [weak self] passwordRequest in
+            guard let self else { return }
+            switch passwordRequest {
+            case .success(let passwordDetails):
+                return completion(passwordDetails)
+            case .failure(let error):
+                print(error)
+                return completion([:])
+            }
+        }
+    }
+    
+    func saveUserDetailsToKeychain(username: String, password: String) {
+        KeychainService.shared.savePassword(username: username, password: password) { queryStatus in
+            switch queryStatus {
+            case .success(let successMessage):
+                print(successMessage)
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+    }
+    
+    func removeUserDetailsFromKeychain() {
+        KeychainService.shared.deletePassword { queryStatus in
+            switch queryStatus {
+            case .success(let status):
+                print(status)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

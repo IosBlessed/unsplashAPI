@@ -6,4 +6,6 @@
 //
 
 protocol SettingsViewModelProtocol: AnyObject {
+    func deletePersistentDataPressed()
+    func logOutPressed() 
 }

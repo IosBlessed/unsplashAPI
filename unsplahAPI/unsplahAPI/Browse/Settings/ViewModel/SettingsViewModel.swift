@@ -6,5 +6,12 @@
 //
 
 final class SettingsViewModel: SettingsViewModelProtocol {
-
+    
+    func deletePersistentDataPressed() {
+        UnsplashAPI.shared.deletePersistentDataFromMemory()
+    }
+    
+    func logOutPressed() {
+        UnsplashAPI.shared.removeUserDetailsFromKeychain()
+    }
 }

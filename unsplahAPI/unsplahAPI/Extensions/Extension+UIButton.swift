@@ -23,7 +23,7 @@ extension UIButton {
             button.layer.shadowColor = UIColor.black.cgColor
             button.layer.shadowOpacity = 1.0
             button.layer.shadowOffset = .zero
-            button.layer.shadowRadius = 4.0
+            button.layer.shadowRadius = 2.0
         }
         button.setAttributedTitle(
             NSAttributedString(
@@ -39,15 +39,9 @@ extension UIButton {
         }
     }
 
-    func shouldButtonBeEnabled(isEnabled: Bool) {
-        guard self.layer.opacity != 0 else { return }
-        if !isEnabled {
-            self.layer.opacity = 0.5
-            self.isEnabled = isEnabled
-        } else {
-            self.layer.opacity = 1.0
-            self.isEnabled = isEnabled
-        }
+    func shouldButtonBeEnabled(isActive: Bool) {
+        self.isEnabled = isActive
+        self.layer.opacity = isActive ? 1.0 : 0.5
     }
 
     func customiseFootnoteButton(
@@ -70,5 +64,18 @@ extension UIButton {
         if animated {
             button.layer.opacity = 0.0
         }
+    }
+    
+    func animateButtonWhenTapping() {
+        UIView.animate(
+            withDuration: 0.2,
+            animations: {
+            self.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            },
+            completion: { _ in
+            UIView.animate(withDuration: 0.2) {
+                self.transform = CGAffineTransform.identity
+            }
+        })
     }
 }

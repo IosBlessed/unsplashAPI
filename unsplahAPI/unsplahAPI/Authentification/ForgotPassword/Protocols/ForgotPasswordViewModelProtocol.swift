@@ -9,4 +9,5 @@ protocol ForgotPasswordViewModelProtocol: AnyObject {
     var emailIsCorrect: Observable<Bool> { get set }
     var showPasswordIsActive: Observable<Bool> { get set }
     func processForgotPasswordTextField(email: String?)
+    func forgotPasswordButtonTouched(username: String, completion: @escaping (String) -> Void)
 }

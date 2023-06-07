@@ -40,6 +40,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
     }
     @IBOutlet private weak var logInButton: UIButton! {
         didSet {
+            logInButton.shouldButtonBeEnabled(isActive: false)
             logInButton.customiseMainActorButton(
                 title: "Log In",
                 shadow: true,
@@ -147,7 +148,7 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
         }
         viewModel.loginButtonIsActive.bind { [weak self] isEnabled in
             guard let self else { return }
-            logInButton.shouldButtonBeEnabled(isEnabled: isEnabled)
+            logInButton.shouldButtonBeEnabled(isActive: isEnabled)
         }
     }
 
@@ -283,6 +284,29 @@ final class LoginViewController: UIViewController, LoginViewControllerProtocol {
     }
 
     // MARK: - Actions
+    @IBAction func loginButtonAction(_ sender: Any) {
+        if logInButton.isEnabled {
+            logInButton.animateButtonWhenTapping()
+            let username = loginTextFieldsView.loginTextField.text!
+            let password = loginTextFieldsView.passwordTextField.text!
+            viewModel.loginButtonPressed(username: username, password: password) { [weak self] userDetails in
+                guard let self else { return }
+                if userDetails == nil {
+                    self.coordinator?.didFinishAuthentification()
+                } else {
+                    let alert = self.alertMessage(
+                        title: "Oooops...",
+                        description: "Looks like user with entered credentials doesn't exists!",
+                        buttonDefaultTitle: "OK",
+                        handlerDestructive: { _ in },
+                        handlerDefault: { _ in }
+                    )
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+    }
+    
     @IBAction func forgotPasswordAction(_ sender: Any) {
         coordinator?.initializeForgotPasswordModule()
     }

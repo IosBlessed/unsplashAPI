@@ -75,8 +75,9 @@ class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
             let alertController = alertMessage(
                 title: "WARNING!!!",
                 description: error.rawValue,
-                buttonTitle: "OK",
-                handler: {_ in}
+                buttonDefaultTitle: "OK",
+                handlerDestructive: { _ in },
+                handlerDefault: { _ in }
             )
             self.present(alertController, animated: true)
         }
