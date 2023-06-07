@@ -103,11 +103,9 @@ class KeychainService {
     }
     // MARK: - Update
     func updatePassword(
-        newUsername username: String,
         newPassword password: String,
         handler: @escaping (Result <KeychainSuccess, KeychainError>
         ) -> Void) {
-        self.username = username
         self.password = password.data(using: .utf8)!
         do {
             try updatePasswordFromKeychain()
@@ -121,7 +119,6 @@ class KeychainService {
 
     private func updatePasswordFromKeychain() throws {
         let newAttributes: [String: Any] = [
-            kSecAttrAccount as String: username,
             kSecValueData as String: password
         ]
         let status = SecItemUpdate(queryForModifications as CFDictionary, newAttributes as CFDictionary)

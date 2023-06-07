@@ -31,6 +31,11 @@ final class BrowseCoordinator: BrowseCoordinatorProtocol {
         fromNavigationController?.pushViewController(pictureDetailsVC!, animated: true)
     }
     
+    func initializeChangePassword(fromNavigationController: UINavigationController?) {
+        let changePasswordVC = ChangePasswordBuilder.build() as? ChangePasswordViewController ?? ChangePasswordViewController()
+        fromNavigationController?.pushViewController(changePasswordVC, animated: true)
+    }
+    
     func userdLogOut() {
         mainCoordinator.initialStart()
     }

@@ -42,9 +42,14 @@ class SettingsViewController: UIViewController, SettingsViewControllerProtocol {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     @IBAction func changePasswordPressed(_ sender: Any) {
         changePasswordButton.animateButtonWhenTapping()
-        // TODO: Move to screen with the changing password
+        coordinator.initializeChangePassword(fromNavigationController: self.navigationController)
     }
     
     @IBAction func deletePersistentPressed(_ sender: Any) {

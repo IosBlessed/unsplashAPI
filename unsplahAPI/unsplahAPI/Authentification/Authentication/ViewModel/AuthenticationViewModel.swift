@@ -10,16 +10,7 @@ import UIKit
 final class AuthenticationViewModel: AuthenticationViewModelProtocol {
     // MARK: - Properties
     var isAuthenticated: Observable<Bool> = Observable(false)
-    var user: User? {
-        didSet {
-            switch user!.authenticationState {
-            case .authenticated:
-                self.isAuthenticated.observedObject = true
-            default:
-                print(user!.authenticationState)
-            }
-        }
-    }
+
     init() {
         UnsplashAPI.shared.getUserfromKeychain { keychainUserDetails in
             if !keychainUserDetails.isEmpty {
@@ -29,8 +20,6 @@ final class AuthenticationViewModel: AuthenticationViewModelProtocol {
     }
     // MARK: - Behaviour
     func authenticate(username: String, password: String) {
-        let user = User()
-        user.authenticationState = .authenticated
-        self.user = user
+        // TODO: Via firebase auth implement logic of authorization
     }
 }
