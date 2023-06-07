@@ -6,15 +6,19 @@
 //
 
 import Foundation
-// TODO: Whole API logic
+import UIKit
+
 class UnsplashAPI {
-    
+    // MARK: - Singleton
     static let shared = UnsplashAPI()
-    
     private init() {}
-    // MARK: - Network
-    private let networkService: NetworkServiceProtocol = NetworkService()
     
+    // MARK: - Properties
+    private let networkService: NetworkServiceProtocol = NetworkService()
+    private let coreDataService: CoreDataServiceProtocol = CoreDataService(
+        persistentContainer: (UIApplication.shared.delegate as? AppDelegate)!.persistentContainer
+    )
+    // MARK: - Network
     func askUnsplashAPIToExtractImages(
         page: Int,
         imageCollection: String?,
@@ -63,9 +67,36 @@ class UnsplashAPI {
         return linkToBuild
     }
     
-    // MARK: - Storage
-    // CRUD database
+    // MARK: - CoreData
+    func getStoredImageBasedOnUnsplashImage(
+        unsplashImage searchingImage: UnsplashImage,
+        completion: @escaping (Result<LikedImage?, DataBaseProcessStatus>) -> Void
+    ) {
+        guard let storagedImages = coreDataService.getLikedImages() else {
+            return completion(.failure(.unableToExtractLikedImages))
+        }
+        let likedImage = storagedImages.first(where: {$0.id == searchingImage.id})
+        return completion(.success(likedImage))
+    }
     
+    func manipulationWithLikedImage(
+        image: UnsplashImage,
+        action: CoreDataVerbs,
+        completion: @escaping(DataBaseProcessStatus) -> Void
+    ) {
+        var status: DataBaseProcessStatus = .successfully
+        switch action {
+        case .add:
+            status = coreDataService.addLikedImage(image: image)
+        case .delete:
+            status = coreDataService.deleteLikedImage(image: image)
+        }
+        return completion(status)
+    }
+    
+    func getWholeLikedImages(completion: @escaping ([LikedImage]?) -> Void) {
+        return completion(coreDataService.getLikedImages())
+    }
     // MARK: - Keycahin
     // CRUD Keychain 
 }

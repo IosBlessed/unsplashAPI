@@ -6,4 +6,6 @@
 //
 
 protocol LikedViewModelProtocol: AnyObject {
+    var likedImages: Observable<[UnsplashImage]> { get set }
+    func extractLikedImages()
 }

@@ -7,4 +7,5 @@
 
 protocol LikedViewControllerProtocol: AnyObject {
     var viewModel: LikedViewModelProtocol! { get set }
+    var coordinator: BrowseCoordinatorProtocol! { get set }
 }

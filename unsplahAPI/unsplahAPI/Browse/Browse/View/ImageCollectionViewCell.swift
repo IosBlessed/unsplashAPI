@@ -47,3 +47,22 @@ final class ObservableCellLayout {
         self.newCellSize = cellSize
     }
 }
+
+enum ImagesSection: CaseIterable {
+    case common
+}
+
+enum ImageDisplayStyle {
+    case grid
+    case portrait
+}
+
+struct SizesForCell {
+    let gridSize: CGSize!
+    let portraitSize: CGSize!
+    
+    init(gridSize: CGSize, portraitSize: CGSize) {
+        self.gridSize = gridSize
+        self.portraitSize = portraitSize
+    }
+}

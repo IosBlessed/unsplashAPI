@@ -7,25 +7,6 @@
 
 import UIKit
 
-enum ImagesSection: CaseIterable {
-    case common
-}
-
-enum ImageDisplayStyle {
-    case grid
-    case portrait
-}
-
-struct SizesForCell {
-    let gridSize: CGSize!
-    let portraitSize: CGSize!
-    
-    init(gridSize: CGSize, portraitSize: CGSize) {
-        self.gridSize = gridSize
-        self.portraitSize = portraitSize
-    }
-}
-
 class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
     @IBOutlet private unowned var browseView: UIView!
     @IBOutlet private weak var imageCollectionView: UICollectionView!
@@ -59,6 +40,11 @@ class BrowseViewController: UIViewController, BrowseViewControllerProtocol {
         setupSizesForCell()
         setupCollectionView()
         setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     private func setupBindings() {

@@ -26,6 +26,8 @@ class PictureDetailsViewController: UIViewController, PictureDetailsViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = DesignedSystemColors.primary
+        viewModel.checkIfImageIsLiked(for: imageObject, actionState: .firstRun)
+        setupBindings()
         setupNavigationSection()
         setupSelectedImageView()
         setupViewForImageDetails()
@@ -33,7 +35,6 @@ class PictureDetailsViewController: UIViewController, PictureDetailsViewControll
         setupAnimationForLike()
         setupImageScrollView()
         setupConstraints()
-        setupBindings()
     }
     
     override func viewWillLayoutSubviews() {
@@ -47,6 +48,14 @@ class PictureDetailsViewController: UIViewController, PictureDetailsViewControll
     }
     
     //MARK: - Behaviour
+    private func setupBindings() {
+        viewModel.isLiked.bind { [weak self] isLiked in
+            guard let self else { return }
+            let imageLike = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+            (self.navigationItem.rightBarButtonItem?.customView as! UIButton).setBackgroundImage(imageLike, for: .normal)
+        }
+    }
+    
     private func setupNavigationSection() {
         self.tabBarController?.tabBar.isHidden = true
         let likeButton = UIBarButtonItem.createRightBarButton(
@@ -102,7 +111,7 @@ class PictureDetailsViewController: UIViewController, PictureDetailsViewControll
     }
     
     private func setupConstraints() {
-        imageScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -150).isActive = true
+        imageScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -180).isActive = true
         imageScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         imageScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         imageScrollView.bottomAnchor.constraint(
@@ -125,14 +134,6 @@ class PictureDetailsViewController: UIViewController, PictureDetailsViewControll
         viewForImageDetails.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         viewForImageDetails.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -100).isActive = true
         viewForImageDetails.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
-    }
-    
-    private func setupBindings() {
-        viewModel.isLiked.bind { [weak self] isLiked in
-            guard let self else { return }
-            let imageLike = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-            (self.navigationItem.rightBarButtonItem?.customView as! UIButton).setBackgroundImage(imageLike, for: .normal)
-        }
     }
     
     private func addLikeGestureRecognizer() {
@@ -159,7 +160,7 @@ class PictureDetailsViewController: UIViewController, PictureDetailsViewControll
         backgroundTask.async { [weak self] in
             guard let self else { return }
             do {
-                let imageData = try Data(contentsOf: URL(string: self.imageObject.urls.full)!)
+                let imageData = try Data(contentsOf: URL(string: self.imageObject.urls.regular)!)
                 return completion(imageData, nil)
             } catch let error as NSError {
                 return completion(nil, error)
@@ -195,7 +196,7 @@ class PictureDetailsViewController: UIViewController, PictureDetailsViewControll
     @objc private func likeImage() {
         // viewModel should process if button tapped
         performImageAnimation()
-        viewModel.likeButtonTapped()
+        viewModel.likeButtonTapped(for: imageObject)
     }
 }
 
