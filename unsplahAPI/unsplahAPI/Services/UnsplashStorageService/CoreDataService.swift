@@ -14,6 +14,7 @@ enum DataBaseProcessStatus: Error {
     case unableToRemoveLikedImage
     case unableToFindImageForDelete
     case likedImagesDoNotExist
+    case unableToClearDatabase
     case untrackedError(error: NSError)
 }
 
@@ -73,5 +74,15 @@ class CoreDataService: CoreDataServiceProtocol {
     func getLikedImages() -> [LikedImage]? {
         self.extractLikedImages()
         return extractedImages
+    }
+    
+    func resetDataBase() {
+        let likedImagesRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LikedImage")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: likedImagesRequest)
+        do {
+            try persistentContainer.viewContext.execute(deleteRequest)
+        } catch {
+            print(DataBaseProcessStatus.unableToClearDatabase)
+        }
     }
 }

@@ -65,7 +65,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
         viewModel?.isAuthenticated.bind { [weak self] isAuthenticated in
             guard let self else { return }
             if isAuthenticated {
-                self.coordinator?.didFinishAuthentification()
+                //self.coordinator?.didFinishAuthentification()
             }
         }
         constructView()
@@ -74,6 +74,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.unitOpacity = 0
+        navigationController?.navigationBar.topItem?.hidesBackButton = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -150,6 +151,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
     }
     // MARK: - Actions
     @IBAction func createAccountAction(_ sender: Any) {
+        createAccountButton.animateButtonWhenTapping()
         UIView.animate(
             withDuration: 1.0,
             animations: animateViewControllerDissapear
@@ -160,14 +162,14 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
     }
 
     @IBAction func logInAction(_ sender: Any) {
+        logInButton.animateButtonWhenTapping()
         UIView.animate(
             withDuration: 1.0,
             animations: animateViewControllerDissapear
         ) { [weak self] _ in
                 guard let self else { return }
             // TODO: Replace test logic to real
-                //self.coordinator?.initializeLoginModule()
-                self.viewModel.authenticate(username: "test", password: "test")
+                self.coordinator?.initializeLoginModule()
         }
     }
 }

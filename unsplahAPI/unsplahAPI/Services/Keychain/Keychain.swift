@@ -29,9 +29,9 @@ enum KeychainSuccess {
     case passwordExtractedSuccessfully
 }
 
+typealias PasswordDetails = [String: String]
+
 class KeychainService {
-    // MARK: - Typealias
-    typealias PasswordDetails = [String: String]
     // MARK: - Properties
     private var username = ""
     private var password = Data()

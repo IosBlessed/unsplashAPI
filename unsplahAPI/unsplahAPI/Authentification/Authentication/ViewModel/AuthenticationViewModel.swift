@@ -20,10 +20,15 @@ final class AuthenticationViewModel: AuthenticationViewModelProtocol {
             }
         }
     }
+    init() {
+        UnsplashAPI.shared.getUserfromKeychain { keychainUserDetails in
+            if !keychainUserDetails.isEmpty {
+                self.isAuthenticated.observedObject = true
+            }
+        }
+    }
     // MARK: - Behaviour
     func authenticate(username: String, password: String) {
-        // TODO: request for user's authentication
-        // extraction user from KeychainService and assign to model of User()
         let user = User()
         user.authenticationState = .authenticated
         self.user = user

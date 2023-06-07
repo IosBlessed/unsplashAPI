@@ -18,7 +18,7 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
                 title: "Confirm",
                 shadow: true
             )
-            confirmButton.shouldButtonBeEnabled(isEnabled: false)
+            confirmButton.shouldButtonBeEnabled(isActive: false)
         }
     }
     // MARK: - Properties
@@ -62,7 +62,7 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
         }
         viewModel.showPasswordIsActive.bind { [weak self] isEnabled in
             guard let self else { return }
-            self.confirmButton.shouldButtonBeEnabled(isEnabled: isEnabled)
+            self.confirmButton.shouldButtonBeEnabled(isActive: isEnabled)
         }
     }
 
@@ -117,14 +117,17 @@ final class ForgotPasswordViewController: UIViewController, ForgotPasswordViewCo
     // MARK: - Actions
     @IBAction func passwordConfirmationButtonTapped(_ sender: Any) {
         // TODO: if user's mail addres is stored in keychain, show alert
-        let alert = self.alertMessage(
-            title: "Request password",
-            description: "Here will be shown your password",
-            buttonTitle: "Thanks!"
-        ) { [weak self] _ in
+        let username = forgotPasswordTextFields.loginTextField.text!
+        viewModel.forgotPasswordButtonTouched(username: username) { [weak self] requestedPassword in
             guard let self else { return }
-            self.navigationController?.popViewController(animated: true)
+            let alert = self.alertMessage(
+                title: "Requested password",
+                description: requestedPassword,
+                buttonDefaultTitle: "Thanks!",
+                handlerDestructive: { _ in },
+                handlerDefault: { _ in}
+            )
+            self.present(alert, animated: true)
         }
-        present(alert, animated: true)
     }
 }

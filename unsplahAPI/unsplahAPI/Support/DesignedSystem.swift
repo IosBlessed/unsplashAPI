@@ -16,8 +16,7 @@ struct DesignedSystemFonts {
     static let headlineBold: UIFont = Constants.sanFranciscoBold.withSize(24)
     static let bodyBold: UIFont = Constants.sanFranciscoBold.withSize(16)
     static let privacyPolicyText: UIFont = Constants.sanFranciscoRegular.withSize(12)
-    static let button: UIFont = Constants.sanFranciscoBold.withSize(18)
-
+    static let button: UIFont = Constants.sanFranciscoRegular.withSize(18)
     static let clearButtonFootnoteMainACtor: UIFont = Constants.sanFranciscoRegular.withSize(14)
 }
 

@@ -10,4 +10,5 @@ protocol CoreDataServiceProtocol: AnyObject {
     func addLikedImage(image: UnsplashImage) -> DataBaseProcessStatus
     func deleteLikedImage(image: UnsplashImage) -> DataBaseProcessStatus
     func getLikedImages() -> [LikedImage]?
+    func resetDataBase() 
 }

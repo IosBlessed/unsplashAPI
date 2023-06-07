@@ -31,5 +31,7 @@ final class BrowseCoordinator: BrowseCoordinatorProtocol {
         fromNavigationController?.pushViewController(pictureDetailsVC!, animated: true)
     }
     
-    func userdLogOut() {}
+    func userdLogOut() {
+        mainCoordinator.initialStart()
+    }
 }

@@ -20,7 +20,23 @@ final class ForgotPasswordViewModel: ForgotPasswordViewModelProtocol {
         let isFieldEmpty = email == ""
         showPasswordButtonShouldBeActive(containtsEmptyFields: isFieldEmpty)
     }
+    
     private func showPasswordButtonShouldBeActive(containtsEmptyFields: Bool) {
         showPasswordIsActive.observedObject = !containtsEmptyFields && emailIsCorrect.observedObject
+    }
+    
+    func forgotPasswordButtonTouched(username: String, completion: @escaping (String) -> Void) {
+        // request password from core data
+        UnsplashAPI.shared.getUserfromKeychain { userDetails in
+            var completionString: String = ""
+            UnsplashAPI.shared.getUserfromKeychain { userDetails in
+                if userDetails[KeychainUserKeys.username.rawValue] == username {
+                    completionString = userDetails[KeychainUserKeys.password.rawValue]!
+                } else {
+                    completionString = "User doesn't exists"
+                }
+                return completion(completionString)
+            }
+        }
     }
 }

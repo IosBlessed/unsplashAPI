@@ -34,21 +34,12 @@ final class PictureDetailsViewModel: PictureDetailsViewModelProtocol {
                 case .firstRun:
                     self.isLiked.observedObject = isLiked
                 case .likeButtonTapped:
-                    if isLiked {
-                        // remove liked image from core data
-                        UnsplashAPI.shared.manipulationWithLikedImage(
-                            image: displayedImage,
-                            action: .delete,
-                            completion: { _ in }
-                        )
-                    } else {
-                        // add liked image to core data
-                        UnsplashAPI.shared.manipulationWithLikedImage(
-                            image: displayedImage,
-                            action: .add,
-                            completion: { _ in }
-                        )
-                    }
+                    let likeAction: CoreDataVerbs = isLiked ? .delete : .add
+                    UnsplashAPI.shared.manipulationWithLikedImage(
+                        image: displayedImage,
+                        action: likeAction,
+                        completion: { _ in }
+                    )
                 }
             case .failure(let error):
                 print(error)
