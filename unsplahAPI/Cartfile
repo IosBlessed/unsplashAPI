@@ -1,0 +1,3 @@
+github "SDWebImage/SDWebImage"
+github "Swinject/Swinject"
+github "IosBlessed/NetworkAPI" "master"

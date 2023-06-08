@@ -1,0 +1,3 @@
+github "IosBlessed/NetworkAPI" "d653daa5b72aa67a7b29657d1bce1c07d6cf00e2"
+github "SDWebImage/SDWebImage" "5.16.0"
+github "Swinject/Swinject" "2.8.3"

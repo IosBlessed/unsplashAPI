@@ -29,9 +29,6 @@
 		374179B72A2E0535006FA39A /* BrowseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374179AD2A2E0535006FA39A /* BrowseBuilder.swift */; };
 		374179B82A2E0535006FA39A /* BrowseViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374179AF2A2E0535006FA39A /* BrowseViewControllerProtocol.swift */; };
 		374179B92A2E0535006FA39A /* BrowseViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374179B02A2E0535006FA39A /* BrowseViewModelProtocol.swift */; };
-		37417A062A31DE6C006FA39A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 37417A052A31DE6C006FA39A /* Swinject */; };
-		37417A0B2A31DEA2006FA39A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 37417A0A2A31DEA2006FA39A /* SDWebImage */; };
-		37417A112A31E144006FA39A /* NetworkAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 37417A102A31E144006FA39A /* NetworkAPI */; };
 		37876F0E2A1F589300EC54CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F0D2A1F589300EC54CF /* AppDelegate.swift */; };
 		37876F102A1F589300EC54CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37876F0F2A1F589300EC54CF /* SceneDelegate.swift */; };
 		37876F182A1F589300EC54CF /* unsplahAPI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37876F162A1F589300EC54CF /* unsplahAPI.xcdatamodeld */; };
@@ -113,20 +110,10 @@
 		378770752A200D0D00EC54CF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378770732A200D0D00EC54CF /* LoginViewController.xib */; };
 		3787707D2A20954200EC54CF /* LoginTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787707C2A20954200EC54CF /* LoginTextFields.swift */; };
 		378770862A21169800EC54CF /* LoginTextFields.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378770852A21169800EC54CF /* LoginTextFields.xib */; };
+		37ED70972A31F6AB007824FE /* NetworkAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 37ED70962A31F6AB007824FE /* NetworkAPI */; };
+		37ED70992A31F6AB007824FE /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 37ED70982A31F6AB007824FE /* Swinject */; };
+		37ED709B2A31F6C8007824FE /* SDWebImage.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ED709A2A31F6C8007824FE /* SDWebImage.xcframework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		37417A132A31E179006FA39A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3721B5022A229FF1009E408A /* CreateAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountViewController.xib; sourceTree = "<group>"; };
@@ -234,6 +221,9 @@
 		378770732A200D0D00EC54CF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		3787707C2A20954200EC54CF /* LoginTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFields.swift; sourceTree = "<group>"; };
 		378770852A21169800EC54CF /* LoginTextFields.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTextFields.xib; sourceTree = "<group>"; };
+		37ED708D2A31F3B8007824FE /* Swinject */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Swinject; path = Carthage/Checkouts/Swinject; sourceTree = "<group>"; };
+		37ED70932A31F582007824FE /* NetworkAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NetworkAPI; path = Carthage/Checkouts/NetworkAPI; sourceTree = "<group>"; };
+		37ED709A2A31F6C8007824FE /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,9 +231,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37417A0B2A31DEA2006FA39A /* SDWebImage in Frameworks */,
-				37417A062A31DE6C006FA39A /* Swinject in Frameworks */,
-				37417A112A31E144006FA39A /* NetworkAPI in Frameworks */,
+				37ED70972A31F6AB007824FE /* NetworkAPI in Frameworks */,
+				37ED709B2A31F6C8007824FE /* SDWebImage.xcframework in Frameworks */,
+				37ED70992A31F6AB007824FE /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,19 +332,12 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		37417A0F2A31E144006FA39A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		37876F012A1F589300EC54CF = {
 			isa = PBXGroup;
 			children = (
 				37876F0C2A1F589300EC54CF /* unsplahAPI */,
 				37876F0B2A1F589300EC54CF /* Products */,
-				37417A0F2A31E144006FA39A /* Frameworks */,
+				37ED708B2A31F3B8007824FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -993,6 +976,16 @@
 			path = ReusableViews;
 			sourceTree = "<group>";
 		};
+		37ED708B2A31F3B8007824FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37ED709A2A31F6C8007824FE /* SDWebImage.xcframework */,
+				37ED70932A31F582007824FE /* NetworkAPI */,
+				37ED708D2A31F3B8007824FE /* Swinject */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1003,8 +996,6 @@
 				37876F062A1F589300EC54CF /* Sources */,
 				37876F072A1F589300EC54CF /* Frameworks */,
 				37876F082A1F589300EC54CF /* Resources */,
-				3787706F2A1FE39500EC54CF /* SwiftLint */,
-				37417A132A31E179006FA39A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1012,9 +1003,8 @@
 			);
 			name = unsplahAPI;
 			packageProductDependencies = (
-				37417A052A31DE6C006FA39A /* Swinject */,
-				37417A0A2A31DEA2006FA39A /* SDWebImage */,
-				37417A102A31E144006FA39A /* NetworkAPI */,
+				37ED70962A31F6AB007824FE /* NetworkAPI */,
+				37ED70982A31F6AB007824FE /* Swinject */,
 			);
 			productName = unsplahAPI;
 			productReference = 37876F0A2A1F589300EC54CF /* unsplahAPI.app */;
@@ -1045,9 +1035,6 @@
 			);
 			mainGroup = 37876F012A1F589300EC54CF;
 			packageReferences = (
-				37417A042A31DE6C006FA39A /* XCRemoteSwiftPackageReference "Swinject" */,
-				37417A092A31DEA2006FA39A /* XCRemoteSwiftPackageReference "SDWebImage" */,
-				37417A0C2A31DF20006FA39A /* XCRemoteSwiftPackageReference "NetworkAPI" */,
 			);
 			productRefGroup = 37876F0B2A1F589300EC54CF /* Products */;
 			projectDirPath = "";
@@ -1083,28 +1070,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3787706F2A1FE39500EC54CF /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		37876F062A1F589300EC54CF /* Sources */ = {
@@ -1406,48 +1371,14 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		37417A042A31DE6C006FA39A /* XCRemoteSwiftPackageReference "Swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/Swinject";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		37417A092A31DEA2006FA39A /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		37417A0C2A31DF20006FA39A /* XCRemoteSwiftPackageReference "NetworkAPI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/IosBlessed/NetworkAPI";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		37417A052A31DE6C006FA39A /* Swinject */ = {
+		37ED70962A31F6AB007824FE /* NetworkAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 37417A042A31DE6C006FA39A /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = Swinject;
-		};
-		37417A0A2A31DEA2006FA39A /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37417A092A31DEA2006FA39A /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
-		37417A102A31E144006FA39A /* NetworkAPI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37417A0C2A31DF20006FA39A /* XCRemoteSwiftPackageReference "NetworkAPI" */;
 			productName = NetworkAPI;
+		};
+		37ED70982A31F6AB007824FE /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 
