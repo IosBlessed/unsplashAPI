@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import NetworkAPI
 
 class UnsplashAPI {
     // MARK: - Singleton

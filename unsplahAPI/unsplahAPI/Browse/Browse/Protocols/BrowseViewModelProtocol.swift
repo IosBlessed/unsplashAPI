@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import NetworkAPI
+
 
 protocol BrowseViewModelProtocol: AnyObject {
     var observedCellLayout: Observable<ObservableCellLayout>! { get set }

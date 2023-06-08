@@ -4,7 +4,10 @@
 //
 //  Created by Никита Данилович on 25.05.2023.
 //
+
 import Foundation
+import NetworkAPI
+
 final class BrowseViewModel: BrowseViewModelProtocol {
     var observedCellLayout: Observable<ObservableCellLayout>!
     var requestedImages: Observable<[UnsplashImage]> = Observable([])
