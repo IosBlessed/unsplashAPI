@@ -125,7 +125,6 @@ class UnsplashAPI {
             case .failure(let error):
                 print(error)
             }
-            
         }
     }
     
@@ -136,6 +135,17 @@ class UnsplashAPI {
                 print(status)
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    
+    func updateUserPassword(oldPassword: String, newPassword: String, completion: @escaping(KeychainError?) -> Void) {
+        KeychainService.shared.updatePassword(newPassword: newPassword) { queryStatus in
+            switch queryStatus {
+            case .success(_):
+                return completion(nil)
+            case .failure(let error):
+                return completion(error)
             }
         }
     }

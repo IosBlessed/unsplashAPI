@@ -12,5 +12,6 @@ protocol BrowseCoordinatorProtocol: AnyObject {
     var mainCoordinator: MainCoordinatorProtocol { get set }
     func initializeBrowseProcess()
     func initializePictureDetails(fromNavigationController: UINavigationController?, imageObject: UnsplashImage)
+    func initializeChangePassword(fromNavigationController: UINavigationController?)
     func userdLogOut()
 }

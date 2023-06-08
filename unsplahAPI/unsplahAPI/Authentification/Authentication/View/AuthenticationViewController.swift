@@ -65,7 +65,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewCo
         viewModel?.isAuthenticated.bind { [weak self] isAuthenticated in
             guard let self else { return }
             if isAuthenticated {
-                //self.coordinator?.didFinishAuthentification()
+                self.coordinator?.didFinishAuthentification()
             }
         }
         constructView()
