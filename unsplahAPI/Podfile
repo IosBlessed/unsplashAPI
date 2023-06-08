@@ -7,5 +7,6 @@ target 'unsplahAPI' do
 
   pod 'SDWebImage', '~> 5.0'
   pod 'Swinject'
-
+  pod 'NetworkAPI', :git => 'https://github.com/IosBlessed/NetworkAPI.git', :branch => 'master'
+ 
 end
