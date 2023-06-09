@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '13.0'
+platform :ios, '13.4'
 
 target 'unsplahAPI' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -7,6 +7,6 @@ target 'unsplahAPI' do
 
   pod 'SDWebImage', '~> 5.0'
   pod 'Swinject'
-  pod 'NetworkAPI', :git => 'https://github.com/IosBlessed/NetworkAPI.git', :branch => 'master'
- 
+  pod 'NetworkAPI', '~> 1.0.0'
+  
 end
