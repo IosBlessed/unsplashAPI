@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23FF16047CE680B2265C6254 /* Pods_unsplahAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E224977ACF73B815489334 /* Pods_unsplahAPI.framework */; };
 		3721B5032A229FF1009E408A /* CreateAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3721B5022A229FF1009E408A /* CreateAccountViewController.xib */; };
 		3721B5062A24022A009E408A /* KeyboardCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B5052A24022A009E408A /* KeyboardCenter.swift */; };
 		3721B50A2A24131F009E408A /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3721B5092A24131F009E408A /* ForgotPasswordViewController.xib */; };
@@ -113,10 +112,12 @@
 		378770752A200D0D00EC54CF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378770732A200D0D00EC54CF /* LoginViewController.xib */; };
 		3787707D2A20954200EC54CF /* LoginTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787707C2A20954200EC54CF /* LoginTextFields.swift */; };
 		378770862A21169800EC54CF /* LoginTextFields.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378770852A21169800EC54CF /* LoginTextFields.xib */; };
+		72EAD42887805FE649C37314 /* Pods_unsplahAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06399C97D58FCB919AA7846F /* Pods_unsplahAPI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B8C5B85F79DEFF8CF3255EE /* Pods-unsplahAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsplahAPI.debug.xcconfig"; path = "Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI.debug.xcconfig"; sourceTree = "<group>"; };
+		06399C97D58FCB919AA7846F /* Pods_unsplahAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_unsplahAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31009F091871A7A15AC1AA9A /* Pods-unsplahAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsplahAPI.debug.xcconfig"; path = "Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		3721B5022A229FF1009E408A /* CreateAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountViewController.xib; sourceTree = "<group>"; };
 		3721B5052A24022A009E408A /* KeyboardCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCenter.swift; sourceTree = "<group>"; };
 		3721B5092A24131F009E408A /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
@@ -224,8 +225,7 @@
 		378770732A200D0D00EC54CF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		3787707C2A20954200EC54CF /* LoginTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFields.swift; sourceTree = "<group>"; };
 		378770852A21169800EC54CF /* LoginTextFields.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTextFields.xib; sourceTree = "<group>"; };
-		B20B876A41304DB054691A2A /* Pods-unsplahAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsplahAPI.release.xcconfig"; path = "Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI.release.xcconfig"; sourceTree = "<group>"; };
-		F7E224977ACF73B815489334 /* Pods_unsplahAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_unsplahAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D88D9240B4DDA5F9F6E204F /* Pods-unsplahAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsplahAPI.release.xcconfig"; path = "Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,7 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23FF16047CE680B2265C6254 /* Pods_unsplahAPI.framework in Frameworks */,
+				72EAD42887805FE649C37314 /* Pods_unsplahAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,8 +243,8 @@
 		1742FBFC5AA7FB4595687AE2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1B8C5B85F79DEFF8CF3255EE /* Pods-unsplahAPI.debug.xcconfig */,
-				B20B876A41304DB054691A2A /* Pods-unsplahAPI.release.xcconfig */,
+				31009F091871A7A15AC1AA9A /* Pods-unsplahAPI.debug.xcconfig */,
+				6D88D9240B4DDA5F9F6E204F /* Pods-unsplahAPI.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 				37876F0C2A1F589300EC54CF /* unsplahAPI */,
 				37876F0B2A1F589300EC54CF /* Products */,
 				1742FBFC5AA7FB4595687AE2 /* Pods */,
-				9416A65D0D4DF1D140968595 /* Frameworks */,
+				B0FC59305B50AD6ED89EF90E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -988,10 +988,10 @@
 			path = ReusableViews;
 			sourceTree = "<group>";
 		};
-		9416A65D0D4DF1D140968595 /* Frameworks */ = {
+		B0FC59305B50AD6ED89EF90E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F7E224977ACF73B815489334 /* Pods_unsplahAPI.framework */,
+				06399C97D58FCB919AA7846F /* Pods_unsplahAPI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1003,12 +1003,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37876F212A1F589400EC54CF /* Build configuration list for PBXNativeTarget "unsplahAPI" */;
 			buildPhases = (
-				6FB91EDA8C57CD93DBA33B78 /* [CP] Check Pods Manifest.lock */,
+				6E6565A0C01044F9A0E143D5 /* [CP] Check Pods Manifest.lock */,
 				37876F062A1F589300EC54CF /* Sources */,
 				37876F072A1F589300EC54CF /* Frameworks */,
 				37876F082A1F589300EC54CF /* Resources */,
 				3787706F2A1FE39500EC54CF /* SwiftLint */,
-				FCAF761DD7BD7DFB2E42CA65 /* [CP] Embed Pods Frameworks */,
+				17319650D9CA5B5562B63296 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1079,6 +1079,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		17319650D9CA5B5562B63296 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3787706F2A1FE39500EC54CF /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1098,7 +1115,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		6FB91EDA8C57CD93DBA33B78 /* [CP] Check Pods Manifest.lock */ = {
+		6E6565A0C01044F9A0E143D5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1118,23 +1135,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FCAF761DD7BD7DFB2E42CA65 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-unsplahAPI/Pods-unsplahAPI-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1366,7 +1366,7 @@
 		};
 		37876F222A1F589400EC54CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B8C5B85F79DEFF8CF3255EE /* Pods-unsplahAPI.debug.xcconfig */;
+			baseConfigurationReference = 31009F091871A7A15AC1AA9A /* Pods-unsplahAPI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1394,7 +1394,7 @@
 		};
 		37876F232A1F589400EC54CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B20B876A41304DB054691A2A /* Pods-unsplahAPI.release.xcconfig */;
+			baseConfigurationReference = 6D88D9240B4DDA5F9F6E204F /* Pods-unsplahAPI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
